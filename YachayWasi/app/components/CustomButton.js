@@ -1,9 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View, Image, TouchableHighlight } from 'react-native';
-//const book = '../assets/book.png';
-import book from '../assets/book.png'
-var colorButton = "blue";
+
 const CustomButton = ({ icon, name, action, color }) => {
   var getRandomColor = function () {
     var letters = '0123456789ABCDEF'.split('');

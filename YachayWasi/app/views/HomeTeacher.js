@@ -1,10 +1,7 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 
 import CustomButton from "../components/CustomButton";
-import book from '../assets/book.png';
-
 
 const HomeTeacher = () => {
   const options =
