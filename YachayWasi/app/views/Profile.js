@@ -2,7 +2,7 @@
 
 import React, {Component} from 'react'
 import {View, Text, StyleSheet, Image, Button, Alert, TextInput} from 'react-native'
-import Form_teacher from './app/components/teacher_form'
+import Form_teacher from '../components/teacher_form'
 
 
 

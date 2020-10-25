@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, ScrollView, Text, View, Dimensions, Image, Slider, Button } from 'react-native';
-import Carousel from './app/components/Carousel'
+import Carousel from '../components/Carousel'
 const images = [
   'https://c4.wallpaperflare.com/wallpaper/912/238/496/architecture-artistic-buildings-castle-wallpaper-preview.jpg',
   'https://c0.wallpaperflare.com/preview/638/482/358/castle-lawn-great-britain-england.jpg',
