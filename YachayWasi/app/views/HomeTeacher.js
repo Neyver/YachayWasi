@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import { View, StyleSheet, Text, Alert } from 'react-native';
 
 import CustomButton from "../components/CustomButton";
 
@@ -7,7 +7,9 @@ const HomeTeacher = () => {
   const options =
     [
       {
-        action: () => { },
+        action: () => { 
+          
+        },
         name: "Mis Cursos",
         uriIcon: 'https://www.esfmjuanmisaelsaracho.edu.bo/images/especialidad.png',
         color: "#f20c0c"
