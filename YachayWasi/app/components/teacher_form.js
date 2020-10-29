@@ -1,13 +1,22 @@
-import React from 'react';
-import { View, Text, StyleSheet, Button, TextInput} from 'react-native';
+//import React from 'react';
+import React, { useState } from 'react';
+import { render } from 'react-dom';
+import { View, Text, StyleSheet, Button, TextInput, ImageEditor, Alert} from 'react-native';
 
-function Form_teacher(){
+const teacher_form = () =>{
+  
+    const [Texto, onChangeText] = React.useState('');
+    const [disable_text, edit] = React.useState(false);
     return(
         <View style={styles.container}>
+          <View style={{left:100}}>
+          <Button  title="Editar" color="rgba(91,132,168,100)" onPress={edit}></Button>
+          </View>
          <View style={styles.row}>
+            
             <Text style={styles.textColor} >
             Nombre de Usuario:</Text>
-            <TextInput placeholder="" placeholderTextColor="white" maxLength={10} value="" 
+            <TextInput editable = {disable_text} placeholder="" placeholderTextColor="white" maxLength={10} value={Texto} onChangeText={text => onChangeText(text)} 
             style={{ borderWidth : 1, borderColor : 'white', padding :5, marginTop : 7 }}
              >
             </TextInput>
@@ -37,7 +46,8 @@ function Form_teacher(){
 
        
     );
-}
+    }
+  
 
 const styles = StyleSheet.create({
     container:{
@@ -54,4 +64,4 @@ const styles = StyleSheet.create({
       }  
 })
 
-export default Form_teacher;
+export default teacher_form; 
