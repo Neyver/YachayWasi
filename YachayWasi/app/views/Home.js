@@ -10,7 +10,12 @@ const images = [
   'https://c1.wallpaperflare.com/preview/160/500/36/various-college-education-learning.jpg',
 ];
 
-const Home = () => {
+const Home = ({navigation}) => {
+
+  const pressHandler = () => {
+    navigation.navigate('EmailAndPassword');
+  }
+
   return (
     <View style={styles.container}>
       <Text style={styles.textTitle}>Unidad Educativa Cositas React-Native</Text>
@@ -18,7 +23,9 @@ const Home = () => {
       <View style={styles.containerButton}>
         <Button title="Iniciar Sesion"
           color="#ff35"
-          style={styles.buttonIni}></Button>
+          style={styles.buttonIni}
+          onPress={pressHandler}
+          ></Button>
       </View>
       <Text style={styles.textDescription}>
         Lorem ipsu sfovjndfkl dsodslk neo weo

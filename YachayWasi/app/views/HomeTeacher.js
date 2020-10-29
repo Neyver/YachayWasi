@@ -3,7 +3,7 @@ import { View, StyleSheet, Text, Alert } from 'react-native';
 
 import CustomButton from "../components/CustomButton";
 
-const HomeTeacher = () => {
+const HomeTeacher = ({navigation}) => {
   const options =
     [
       {
