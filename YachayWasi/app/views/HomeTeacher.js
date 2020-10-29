@@ -1,14 +1,15 @@
 import React from 'react';
-import firebase from '../../utils/firebase';
-import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, Text, Alert } from 'react-native';
 
 import CustomButton from "../components/CustomButton";
 
-const HomeTeacher = () => {
+const HomeTeacher = ({navigation}) => {
   const options =
     [
       {
-        action: () => { },
+        action: () => { 
+          
+        },
         name: "Mis Cursos",
         uriIcon: 'https://www.esfmjuanmisaelsaracho.edu.bo/images/especialidad.png',
         color: "#f20c0c"
@@ -53,9 +54,6 @@ const HomeTeacher = () => {
       <View style={styles.containerHome}>
         {createItem()}
       </View>
-      <TouchableOpacity style={{ padding: 20 }} onPress={() => firebase.auth().signOut()} >
-        <Text style={{ color: '#1B9CFC' }} >Logout</Text>
-      </TouchableOpacity>
     </View>
   );
 }
