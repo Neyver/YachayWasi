@@ -8,7 +8,7 @@ const HomeTeacher = ({navigation}) => {
     [
       {
         action: () => { 
-          
+            
         },
         name: "Mis Cursos",
         uriIcon: 'https://www.esfmjuanmisaelsaracho.edu.bo/images/especialidad.png',
@@ -21,7 +21,9 @@ const HomeTeacher = ({navigation}) => {
         color: "#5976b3"
       },
       {
-        action: () => { },
+        action: () => {
+          navigation.navigate('ActivitiesSchool');
+        },
         name: "Actividades",
         uriIcon: 'https://img.icons8.com/color/452/calendar.png',
         color: "#5976b3"

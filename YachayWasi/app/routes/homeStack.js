@@ -4,6 +4,7 @@ import Home from '../views/Home';
 import HomeTeacher from '../views/HomeTeacher';
 import Profile from '../views/Profile';
 import EmailAndPassword from '../components/EmailAndPassword';
+import ActivitiesSchool from '../views/ActivitiesSchool';
 
 
 const views = {
@@ -12,6 +13,9 @@ const views = {
     },
     EmailAndPassword:{
         screen: EmailAndPassword
+    },
+    ActivitiesSchool:{
+        screen: ActivitiesSchool
     },
     
 }
