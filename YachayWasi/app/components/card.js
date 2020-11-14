@@ -1,46 +1,39 @@
+import React from 'react';
+import { StyleSheet, ScrollView, Text, View, Dimensions, Image } from 'react-native';
 
-const card = () =>{
-    const [Title, onChangeText1] = React.useState('TITULO');
-    const [Contenido, onChangeText2] = React.useState('Esta es una prueba de del contenido que puede tener un aviso, mas y mas contenido, mucho, mucho y mas contenido');
-    const [Date, onChangeText3] = React.useState('11/11/2020');
+const card = ({ Title, Contenido, Date, color }) =>{
+    //const [Title, onChangeText1] = React.useState('TITULO');
+    //const [Contenido, onChangeText2] = React.useState('Esta es una prueba de del contenido que puede tener un aviso, mas y mas contenido, mucho, mucho y mas contenido');
+    //const [Date, onChangeText3] = React.useState('11/11/2020');
    return(
-                
+      <View style={styles.mainCard}>     
         <View style={styles.carta}>  
-        <View style={styles.titleTheCard}>
-   <Text style={styles.textColorBold}>{Title}</Text>
-        </View>
+          <View style={styles.titleTheCard}>
+            <Text style={styles.textColorBold}>{Title}</Text>
+          </View>
         <View style={styles.alinSepa}>
-        <Separator />
+        
         </View>
-        <View style={styles.bodyTheCard }>
-   <Text style={styles.textColor}>{Contenido}</Text>
+          <View style={styles.bodyTheCard }>
+            <Text style={styles.textColor}>{Contenido}</Text>
+          </View>
+          <View style={styles.footerTheCard}>
+            <Text style={styles.textColorBold}>{Date}</Text>
+          </View>           
         </View>
-        <View style={styles.footerTheCard}>
-   <Text style={styles.textColorBold}>{Date}</Text>
-        </View>           
         </View>
-       
     );
-    }
- 
-const Separator = () => (
-        <View style={styles.separator} />
-    );    
-  
+    }      
 const styles = StyleSheet.create({
     
       textColorBold:{
         color : 'white',
         fontWeight: 'bold',
         fontSize:20       
-        
       },
-      separator: {
-    
-        marginVertical: 3,
-        borderBottomColor: 'white',
-        width:280,
-        borderBottomWidth: StyleSheet.hairlineWidth,
+      mainCard: {
+        flex: 1,
+        padding: 10,
       },
       titleTheCard:{
         //backgroundColor:'red',
@@ -91,6 +84,6 @@ const styles = StyleSheet.create({
         borderRadius:10
     }
       
-})
+});
 
 export default card;
