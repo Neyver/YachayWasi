@@ -1,76 +1,53 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, StyleSheet } from 'react-native';
 import Card from '../components/card';
-import CustomButton from "../components/CustomButton";
-
 import * as firebase from 'firebase/app';
 import 'firebase/firestore';
+import { FlatList } from 'react-native-gesture-handler';
+//import {firebaseConfig} from '../../utils/firebaseConfig';
 
-if(!firebase.apps.length){ firebase.initializeApp(firebaseConfig);}
 const db = firebase.app();
 
-const [ListActivities, setListActivities] = useState([])
+const ActivitiesSchool = ({ navigation }) => {
+  const [ListActivities, setListActivities] = useState([])
 
-useEffect(() => {
-  getActivities()
-}, [])
+  useEffect(() => {
+    getActivities();
+  }, [])
 
-const getActivities = async() =>{
-  let list = [];
-   
-}
+  const getActivities = async () => {
 
-const ActivitiesSchool = ({navigation}) => {
-  const options =
-    [
-      {
-        titulo: "Actividad 1",
-        contenido: 'En esta actividad no hacemos nada',
-        date: "02-10-2020"
-      },
-      {
-        titulo: "Actividad 2",
-        contenido: 'En esta actividad no hacemos nada',
-        date: "02-10-2020"
-      },
-      {
-        titulo: "Actividad 3",
-        contenido: 'En esta actividad no hacemos nada',
-        date: "02-10-2020"
-      },
-      {
-        titulo: "Actividad 4",
-        contenido: 'En esta actividad no hacemos nada',
-        date: "02-10-2020"
-      },
-      {
-        titulo: "Actividad 5",
-        contenido: 'En esta actividad no hacemos nada',
-        date: "02-10-2020"
-      },
-      {
-        titulo: "Actividad 6",
-        contenido: 'En esta actividad no hacemos nada',
-        date: "02-10-2020"
-      },
-    ];
+    let list = [];
+    const response = await db.firestore().collection('Actividades').get();
 
-  const createItem = () => options.map((option) => {
-    const { titulo, contenido, date } = option;
-    return (
+    response.forEach(document => {
+      let id = document.id
+      let date = document.data().Fecha
+      let descripcion = document.data().Descripcion
+      let actividad = document.data().Actividad
+      let obj = {id, actividad, descripcion, date }
+      list.push(obj);
+    })
+    setListActivities(list)
+    console.log(list)
+  }
+  const createItem = ({item})=>(
       <Card
-        Title={titulo}
-        Contenido={contenido}
-        Date={date}
+        Title={item.actividad}
+        Contenido={item.descripcion}
+        Date={item.date+""}
       />
-    );
-  });
+  );
 
   return (
     <View style={styles.containerHome}>
-        <View style={styles.containerCard}>
-          {createItem()}
-        </View>
+      <View style={styles.containerCard}>
+        <FlatList
+          data = {ListActivities}
+          renderItem = {createItem}
+          keyExtractor={item=>item.id}
+        />
+      </View>
     </View>
   );
 }

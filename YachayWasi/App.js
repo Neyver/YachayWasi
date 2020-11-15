@@ -6,15 +6,17 @@ import { StyleSheet, Text, View } from 'react-native';
 import EmailAndPassword from './app/components/EmailAndPassword';
 import Home from './app/views/Home';
 import HomeTeacher from './app/views/HomeTeacher';
-import firebase from './utils/firebase';
+import firebaseConfig from './utils/firebaseConfig';
 import Navigatorl from './app/routes/loginStack';
 import Navigator from './app/routes/homeStack';
+import 'firebase/firestore';
+
 
 export default function App() {
   const [loggedIn, onChangeLog] = useState(false);
 
   useEffect(() => {
-    firebase.auth().onAuthStateChanged(user => {
+    firebaseConfig.auth().onAuthStateChanged(user => {
       if (user) {
         onChangeLog(true)
       } else {
