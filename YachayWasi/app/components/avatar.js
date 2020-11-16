@@ -17,8 +17,7 @@ const avatar = () =>{
         />
           <Image
             style={styles.imageT}
-            source={require('../../assets/tuerca.png')}
-            
+            source={require('../../assets/perfil.png')}
           />
           
         </View>
