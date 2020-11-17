@@ -10,7 +10,7 @@ const images = [
   'https://c1.wallpaperflare.com/preview/160/500/36/various-college-education-learning.jpg',
 ];
 
-const Home = ({navigation}) => {
+const Home = ({ navigation }) => {
 
   const pressHandler = () => {
     navigation.navigate('EmailAndPassword');
@@ -25,23 +25,21 @@ const Home = ({navigation}) => {
           color="#ff35"
           style={styles.buttonIni}
           onPress={pressHandler}
-          ></Button>
+        ></Button>
       </View>
       <Text style={styles.textDescription}>
         Lorem ipsu sfovjndfkl dsodslk neo weo
           </Text>
     </View>
   );
-
 }
 const styles = StyleSheet.create({
   textTitle: { flex: 1, textAlign: "center", marginTop: 12 },
-  container: { flex: 1, marginTop: 50, backgroundColor: "#888" },
+  container: { flex: 1, backgroundColor: "#888" },
   containerCarousel: { flex: 4 },
   containerButton: { flex: 3, alignSelf: "center", justifyContent: "center" },
   buttonIni: { padding: 10 },
   textDescription: { textAlign: "center", flex: 3 }
 });
-
 
 export default Home
