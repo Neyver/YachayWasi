@@ -27,7 +27,6 @@ const ActivitiesSchool = ({ navigation }) => {
       list.push(obj);
     })
     setListActivities(list)
-    console.log(list)
   }
   const createItem = ({ item }) => (
     <Card
