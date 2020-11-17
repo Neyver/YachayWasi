@@ -4,7 +4,6 @@ import Card from '../components/card';
 import * as firebase from 'firebase/app';
 import 'firebase/firestore';
 import { FlatList } from 'react-native-gesture-handler';
-//import {firebaseConfig} from '../../utils/firebaseConfig';
 
 const db = firebase.app();
 
@@ -16,7 +15,6 @@ const ActivitiesSchool = ({ navigation }) => {
   }, [])
 
   const getActivities = async () => {
-
     let list = [];
     const response = await db.firestore().collection('Actividades').get();
 
@@ -25,27 +23,27 @@ const ActivitiesSchool = ({ navigation }) => {
       let date = document.data().Fecha
       let descripcion = document.data().Descripcion
       let actividad = document.data().Actividad
-      let obj = {id, actividad, descripcion, date }
+      let obj = { id, actividad, descripcion, date }
       list.push(obj);
     })
     setListActivities(list)
     console.log(list)
   }
-  const createItem = ({item})=>(
-      <Card
-        Title={item.actividad}
-        Contenido={item.descripcion}
-        Date={item.date+""}
-      />
+  const createItem = ({ item }) => (
+    <Card
+      Title={item.actividad}
+      Contenido={item.descripcion}
+      Date={item.date + ""}
+    />
   );
 
   return (
     <View style={styles.containerHome}>
       <View style={styles.containerCard}>
         <FlatList
-          data = {ListActivities}
-          renderItem = {createItem}
-          keyExtractor={item=>item.id}
+          data={ListActivities}
+          renderItem={createItem}
+          keyExtractor={item => item.id}
         />
       </View>
     </View>
