@@ -1,24 +1,53 @@
+import 'react-native-gesture-handler';
+
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import EmailAndPassword from './app/components/EmailAndPassword';
+import Home from './app/views/Home';
+import HomeTeacher from './app/views/HomeTeacher';
+import firebase from './utils/firebase';
+import Navigatorl from './app/routes/loginStack';
+import Navigator from './app/routes/homeStack';
 
 import UserLogin from './app/views/user_login.js';
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your apps!</Text>
-      <UserLogin></UserLogin>
-      <StatusBar style="auto" />
-    </View>
-  );
+  const [loggedIn, onChangeLog] = useState(false);
+
+  useEffect(() => {
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        onChangeLog(true)
+      } else {
+        onChangeLog(false)
+      }
+    })
+  });
+  const renderContent = () => {
+    switch (loggedIn) {
+      case false:
+        return <Home />
+      case true:
+        return <HomeTeacher />
+      default:
+        return <HomeTeacher />
+    }
+  }
+  if (loggedIn == true) {
+    return (
+        <Navigator></Navigator>
+      );  
+    }else{
+      return (
+        <Navigatorl></Navigatorl>
+    );
+  }
+  
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 });
