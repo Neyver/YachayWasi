@@ -1,14 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, TouchableOpacity, Text } from 'react-native';
 import Card from '../components/card';
 import * as firebase from 'firebase/app';
 import 'firebase/firestore';
 import { FlatList } from 'react-native-gesture-handler';
+import NoticeFrom from "../components/NoticeForm";
 
 const db = firebase.app();
 
 const NoticesSchool = ({ navigation }) => {
   
+
+  const onBottomPress  = () => { 
+    navigation.navigate('CreateNotice');
+  }
+
   const [ListNotices, setListNotices] = useState([])
 
   useEffect(() => {
@@ -18,6 +24,7 @@ const NoticesSchool = ({ navigation }) => {
   const getActivities = async () => {
     let list = [];
     const response = await db.firestore().collection('Avisos').get();
+
 
     response.forEach(document => {
       let id = document.id
@@ -40,6 +47,9 @@ const NoticesSchool = ({ navigation }) => {
   return (
     <View style={styles.containerHome}>
       <View style={styles.containerCard}>
+        <TouchableOpacity style={styles.buttonContainer} onPress={onBottomPress} >
+                    <Text style={styles.buttonText}>Crear un Aviso</Text>
+        </TouchableOpacity>
         <FlatList
           data={ListNotices}
           renderItem={createItem}
@@ -63,7 +73,18 @@ const styles = StyleSheet.create({
   },
   textWelcom: {
     fontSize: 40,
-  }
+  },
+  buttonContainer: {
+    backgroundColor: '#3B3B98',
+    padding: 5,
+    borderRadius: 8
+  },
+  buttonText: {
+    textAlign: 'center',
+    color: '#fff',
+    fontWeight: 'bold',
+    fontSize: 15
+  }  
 });
 
 export default NoticesSchool;

@@ -8,6 +8,7 @@ import EmailAndPassword from '../components/EmailAndPassword';
 import ActivitiesSchool from '../views/ActivitiesSchool';
 import NoticesSchool from '../views/NoticesSchool';
 import firebaseConfig from '../../utils/firebaseConfig';
+import CreateNotice from '../views/CreateNotice';
 
 const views = {
   HomeTeacher: {
@@ -39,6 +40,12 @@ const views = {
       title: "Avisos Escolar",
     }),
   },
+  CreateNotice: {
+    screen: CreateNotice,
+    navigationOptions: ({navigation}) => ({
+      title: "Agregar Avisos"
+    }),
+  }
 
 }
 
