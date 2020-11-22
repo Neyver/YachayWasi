@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, Button, TextInput, ImageEditor, Alert, Image } from 'react-native';
 
@@ -66,6 +67,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 20
   }
+
 })
 
 export default avatar; 
