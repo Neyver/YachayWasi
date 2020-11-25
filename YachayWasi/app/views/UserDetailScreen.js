@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import {View, Text,StyleSheet, Button,TextInput } from 'react-native'
-import firebase from '../database/firebase'
-import Form_teacher from '../teacher_form'
-import Avatar from '../avatar'
+import * as firebase from 'firebase/app';
+import 'firebase/firestore';
+import Form_teacher from '../components/teacher_form'
+import Avatar from '../components/avatar';
+//import Avatar from '../components/avatar'
+
+const db = firebase.app();
 
 const UserDetailScreen = (props) => {
     //console.log(props.route.params.userId)
@@ -25,9 +29,9 @@ const UserDetailScreen = (props) => {
             id: doc.id,          
         })       
     };
-        useEffect(()=>{
-            getUserById(props.route.params.userId) ;  
-    },[]);
+    //   useEffect(()=>{
+      //     getUserById(props.route.params.userId) ;  
+    //},[]);
 
     const handleChangeText = (name,value) =>{
         setUser({...user,[name]: value });
@@ -46,8 +50,8 @@ const UserDetailScreen = (props) => {
              >
             </TextInput>
             <Button  title="Mostrar" color="rgba(91,132,168,100)" onPress={hm}></Button>
-                <Avatar></Avatar>
             </View>
+            <Avatar name='Laura' linkphoto ='https://i.pinimg.com/564x/e0/b7/e8/e0b7e895361da676c3d709170508cc39.jpg' ></Avatar>
 
         <View style={styles.body}>            
            <View style={styles.container1}>
@@ -118,7 +122,7 @@ const styles = StyleSheet.create({
         flex: 1,
         //backgroundColor:"red",
         alignItems : 'center',
-        justifyContent:'center',
+        
       },
 })
 export default UserDetailScreen 

@@ -7,6 +7,9 @@ import HomeTeacher from '../views/HomeTeacher';
 import EmailAndPassword from '../components/EmailAndPassword';
 import ActivitiesSchool from '../views/ActivitiesSchool';
 import firebaseConfig from '../../utils/firebaseConfig';
+import UserDetailScreen from '../views/UserDetailScreen';
+//import Avatar from '../components/avatar'
+
 
 const views = {
   HomeTeacher: {
@@ -30,6 +33,12 @@ const views = {
     screen: ActivitiesSchool,
     navigationOptions: ({ navigation }) => ({
       title: "Actividades de la Escuela",
+    }),
+  },
+  UserDetailScreen: {
+    screen: UserDetailScreen,
+    navigationOptions: ({ navigation }) => ({
+      title: "Detalles de usuario",
     }),
   },
 

@@ -20,6 +20,8 @@ class EmailAndPassword extends Component {
                     error: err.message
                 })
             })
+            console.log(this.state.email);
+            console.log(this.state.password);
     }
     onLoginSuccess = () => {
         this.setState({
