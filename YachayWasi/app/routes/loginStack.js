@@ -19,7 +19,6 @@ const views = {
   },
 
 }
-
 const HomeStack = createStackNavigator(views);
 
 export default createAppContainer(HomeStack);
