@@ -6,7 +6,7 @@ import React, { useState, useEffect } from 'react';
 import 'firebase/firestore';
 
 import firebaseConfig from '../../utils/firebaseConfig';
-const HomeTeacher = ({ navigation, user1 }) => {
+const HomeStudent = ({ navigation, user1 }) => {
 
   useEffect(() => {
     firebaseConfig.auth().onAuthStateChanged(user => {
@@ -93,4 +93,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default HomeTeacher;
+export default HomeStudent;

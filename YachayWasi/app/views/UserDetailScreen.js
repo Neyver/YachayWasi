@@ -6,32 +6,63 @@ import Form_teacher from '../components/teacher_form'
 import Avatar from '../components/avatar';
 //import Avatar from '../components/avatar'
 
+import firebaseConfig from '../../utils/firebaseConfig';
+
 const db = firebase.app();
 
 const UserDetailScreen = (props) => {
     //console.log(props.route.params.userId)
     const [Texto1, onChangeText1] = React.useState('');
-
+    useEffect(() => {
+      firebaseConfig.auth().onAuthStateChanged(user => {
+        //console.log(user.uid);
+        onChangeText1(user.uid)
+        //getDetailsUser()
+      })
+      
+     // console.log(db.firestore().collection('Actividades').get())
+    
+      
+    });
     const [user, setUser] =useState({
-        id:'',
-        name:'',
-        email:'',
-        phone:''
+        id:'fsdfasd',
+        name:'fsdfas',
+        email:'asdfasf',
+        phone:'fasdfasdfsd'
     })
+
+    const getDetailsUser = async () => {
+      let list = [];
+      const response = await db.firestore().collection('users').get();
+  
+      response.forEach(document => {
+        let id = document.id
+        let name = document.data().name
+        let email = document.data().email
+        let phone = document.data().phone
+        let obj = { id, name, email, phone }
+        list.push(obj);
+      })
+      console.log(list)
+    }
     const getUserById = async (id) =>{
-        const dbRef = firebase.db.collection('users').doc(id)
+      
+        console.log(firebase.db.collection('users'))
+        const dbRef = await firebase.db.collection('users').doc(id)
+        console.log(firebase.db.collection('users'))
         const doc = await dbRef.get();
-        //console.log(doc)
+        console.log(doc)
         const user = doc.data();
         console.log(user)
         setUser ({
-            ...user,
-            id: doc.id,          
+          ...user,
+           id: Texto1,          
         })       
     };
     //   useEffect(()=>{
       //     getUserById(props.route.params.userId) ;  
     //},[]);
+    
 
     const handleChangeText = (name,value) =>{
         setUser({...user,[name]: value });
@@ -116,10 +147,10 @@ const styles = StyleSheet.create({
         //backgroundColor:'yellow',
         justifyContent:'center',
         alignItems : 'center',
-        top: -180
+        top: -100
        },
        header:{
-        flex: 1,
+        flex: 0.2,
         //backgroundColor:"red",
         alignItems : 'center',
         
