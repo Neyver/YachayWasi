@@ -6,6 +6,7 @@ import { createAppContainer } from 'react-navigation';
 import HomeTeacher from '../views/HomeTeacher';
 import EmailAndPassword from '../components/EmailAndPassword';
 import ActivitiesSchool from '../views/ActivitiesSchool';
+import Horarios from '../views/Horarios';
 import firebaseConfig from '../../utils/firebaseConfig';
 import UserDetailScreen from '../views/UserDetailScreen';
 //import Avatar from '../components/avatar'
@@ -42,6 +43,12 @@ const views = {
     }),
   },
 
+  Schedule: {
+    screen: Horarios,
+    navigationOptions: ({ navigation }) => ({
+      title: "Horario Profesor",
+    }),
+  },
 }
 
 const HomeTstack = createStackNavigator(views);
