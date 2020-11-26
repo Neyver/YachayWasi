@@ -32,7 +32,9 @@ const HomeTeacher = ({ navigation, user1 }) => {
         color: "#f20c0c"
       },
       {
-        action: () => { },
+        action: () => {
+          navigation.navigate('Schedule');
+        },
         name: "Horario",
         uriIcon: 'https://image.flaticon.com/icons/png/512/376/376853.png',
         color: "#5976b3"
