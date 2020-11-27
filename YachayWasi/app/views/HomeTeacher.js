@@ -1,4 +1,3 @@
-
 import { View, StyleSheet, Text, Button, ImagePropTypes } from 'react-native';
 import CustomButton from "../components/CustomButton";
 
@@ -13,12 +12,12 @@ const HomeTeacher = ({ navigation, user1 }) => {
       console.log(user);
     })
   });
-  
-  const irdetalles = ()=>{
+
+  const irdetalles = () => {
     console.log('AAAAAAAAA')
     navigation.navigate('UserDetailScreen');
-    console.log(navigation,user1)
-    
+    console.log(navigation, user1)
+
   }
 
   const options =
@@ -70,7 +69,6 @@ const HomeTeacher = ({ navigation, user1 }) => {
   return (
     <View style={styles.containerHome}>
       <View style={styles.containerWelcom}>
-        <Button onPress={()=>irdetalles()}></Button>
         <Text style={styles.textWelcom}>Bienvenido</Text>
       </View>
       <View style={styles.containerHome}>
@@ -83,7 +81,7 @@ const HomeTeacher = ({ navigation, user1 }) => {
 const styles = StyleSheet.create({
   containerHome: {
     flex: 1,
-    backgroundColor: "#888"
+    backgroundColor: "#4F728E"
   },
   containerWelcom: {
     flex: 1,

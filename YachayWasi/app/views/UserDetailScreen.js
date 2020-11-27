@@ -25,10 +25,10 @@ const UserDetailScreen = (props) => {
       
     });
     const [user, setUser] =useState({
-        id:'fsdfasd',
-        name:'fsdfas',
-        email:'asdfasf',
-        phone:'fasdfasdfsd'
+        id:'',
+        name:'',
+        email:'',
+        phone:''
     })
 
     const getDetailsUser = async () => {
@@ -127,7 +127,7 @@ const styles = StyleSheet.create({
         flex:1,
         //justifyContent:'center',
         //alignItems : 'center',
-        backgroundColor :'rgb(64,97,115)'
+        backgroundColor :'#4F728E'
       },
     container1:{
         flexDirection : 'column',

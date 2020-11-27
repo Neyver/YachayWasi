@@ -10,37 +10,36 @@ import NavigatorS from './app/routes/homeEstack';
 
 export default function App() {
   const [loggedIn, onChangeLog] = useState(false);
-  const [Texto1, onChangeText1] = React.useState('');
+  const [newUser, onChangeNewUser] = React.useState('');
 
   useEffect(() => {
     firebaseConfig.auth().onAuthStateChanged(user => {
       if (user) {
-        onChangeLog(true)
+        onChangeLog(true);
+        onChangeNewUser(user);
       } else {
         onChangeLog(false)
       }
     })
   });
 
-
-  let userType = 0
-  if (loggedIn == true) {
-    if(userType==0){
+  if (loggedIn) {
+    if (newUser.uid === 'dIekRraAJUSNtK5y41zp5Xghsk72') {
       return (
-        <NavigatorT></NavigatorT>
+        <NavigatorT />
       );
-    }else if(userType==1){
+    } else if (newUser.uid === 'iJzPecvIPYT4MCtEdqQGwHgme6q2') {
       return (
-        <NavigatorP></NavigatorP>
+        <NavigatorS />
       );
-    }else{
+    } else {
       return (
-        <NavigatorS></NavigatorS>
+        <NavigatorP />
       );
     }
   } else {
     return (
-      <Navigatorl></Navigatorl>
+      <Navigatorl />
     );
   }
 
