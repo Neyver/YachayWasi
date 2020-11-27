@@ -7,6 +7,7 @@ import HomeTeacher from '../views/HomeTeacher';
 import EmailAndPassword from '../components/EmailAndPassword';
 import ActivitiesSchool from '../views/ActivitiesSchool';
 import NoticesSchool from '../views/NoticesSchool';
+import Horarios from '../views/Horarios';
 import firebaseConfig from '../../utils/firebaseConfig';
 import CreateNotice from '../views/CreateNotice';
 import UserDetailScreen from '../views/UserDetailScreen';
@@ -56,6 +57,12 @@ const views = {
     }),
   },
 
+  Schedule: {
+    screen: Horarios,
+    navigationOptions: ({ navigation }) => ({
+      title: "Horario Profesor",
+    }),
+  },
 }
 
 const HomeTstack = createStackNavigator(views);
