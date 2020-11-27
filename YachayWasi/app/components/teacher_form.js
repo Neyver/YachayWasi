@@ -7,6 +7,7 @@ const teacher_form = () =>{
   
     const [Texto, onChangeText] = React.useState('');
     const [disable_text, edit] = React.useState(false);
+    
     return(
         <View style={styles.container}>
           <View style={{left:100}}>

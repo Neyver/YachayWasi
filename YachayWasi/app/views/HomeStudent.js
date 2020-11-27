@@ -6,7 +6,7 @@ import React, { useState, useEffect } from 'react';
 import 'firebase/firestore';
 
 import firebaseConfig from '../../utils/firebaseConfig';
-const HomeTeacher = ({ navigation, user1 }) => {
+const HomeStudent = ({ navigation, user1 }) => {
 
   useEffect(() => {
     firebaseConfig.auth().onAuthStateChanged(user => {
@@ -46,9 +46,7 @@ const HomeTeacher = ({ navigation, user1 }) => {
         color: "#5976b3"
       },
       {
-        action: () => { 
-          navigation.navigate('NoticesSchool');
-        },
+        action: () => { },
         name: "Avisos",
         uriIcon: 'https://images.vexels.com/media/users/3/157272/isolated/preview/e6d8b2a22f0f860af01343af96e94a8a-libros-apilados-vector-by-vexels.png',
         color: "red"
@@ -95,4 +93,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default HomeTeacher;
+export default HomeStudent;

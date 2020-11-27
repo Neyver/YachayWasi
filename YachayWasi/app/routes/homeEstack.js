@@ -3,18 +3,19 @@ import { TouchableOpacity, Text } from 'react-native';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createAppContainer } from 'react-navigation';
 
-import HomeTeacher from '../views/HomeTeacher';
+import HomeStudent from '../views/HomeStudent';
 import EmailAndPassword from '../components/EmailAndPassword';
 import ActivitiesSchool from '../views/ActivitiesSchool';
-import NoticesSchool from '../views/NoticesSchool';
 import firebaseConfig from '../../utils/firebaseConfig';
-import CreateNotice from '../views/CreateNotice';
+import UserDetailScreen from '../views/UserDetailScreen';
+//import Avatar from '../components/avatar'
+
 
 const views = {
-  HomeTeacher: {
-    screen: HomeTeacher,
+  HomeStudent: {
+    screen: HomeStudent,
     navigationOptions: ({ navigation }) => ({
-      title: "Profesor",
+      title: "Estudiante",
       headerRight: () => (
         <TouchableOpacity style={{ padding: 20 }} onPress={() => firebaseConfig.auth().signOut()} >
           <Text style={{ color: '#1B9CFC' }} >Logout</Text>
@@ -34,21 +35,15 @@ const views = {
       title: "Actividades de la Escuela",
     }),
   },
-  NoticesSchool: {
-    screen: NoticesSchool,
+  UserDetailScreen: {
+    screen: UserDetailScreen,
     navigationOptions: ({ navigation }) => ({
-      title: "Avisos Escolar",
+      title: "Detalles de usuario",
     }),
   },
-  CreateNotice: {
-    screen: CreateNotice,
-    navigationOptions: ({navigation}) => ({
-      title: "Agregar Avisos"
-    }),
-  }
 
 }
 
-const HomeStack = createStackNavigator(views);
+const HomeEstack = createStackNavigator(views);
 
-export default createAppContainer(HomeStack);
+export default createAppContainer(HomeEstack);

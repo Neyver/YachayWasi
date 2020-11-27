@@ -1,9 +1,9 @@
+
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, Button, TextInput, ImageEditor, Alert, Image } from 'react-native';
 
 const avatar = ({ name, linkphoto }) => {
-  const [name, setName] = useState(name || 'LAURA ROSEMBLUT');
-  const [linkphoto, setImage] = useState(linkphoto || 'https://i.pinimg.com/564x/e0/b7/e8/e0b7e895361da676c3d709170508cc39.jpg');
+  
   return (
 
     <View style={styles.moderow}>
@@ -66,6 +66,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 20
   }
+
 })
 
 export default avatar; 
