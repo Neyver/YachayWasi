@@ -1,21 +1,49 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import 'react-native-gesture-handler';
+import React, { useState, useEffect } from 'react';
+import 'firebase/firestore';
+
+import firebaseConfig from './utils/firebaseConfig';
+import Navigatorl from './app/routes/loginStack';
+import NavigatorT from './app/routes/homeTstack';
+import NavigatorP from './app/routes/homePstack';
+import NavigatorS from './app/routes/homeEstack';
+
+import UserLogin from './app/views/user_login.js';
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+  const [loggedIn, onChangeLog] = useState(false);
+  const [Texto1, onChangeText1] = React.useState('');
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+  useEffect(() => {
+    firebaseConfig.auth().onAuthStateChanged(user => {
+      if (user) {
+        onChangeLog(true)
+      } else {
+        onChangeLog(false)
+      }
+    })
+  });
+
+
+  let userType = 0
+  if (loggedIn == true) {
+    if(userType==0){
+      return (
+        <NavigatorT></NavigatorT>
+      );
+    }else if(userType==1){
+      return (
+        <NavigatorP></NavigatorP>
+      );
+    }else{
+      return (
+        <NavigatorS></NavigatorS>
+      );
+    }
+  } else {
+    return (
+      <Navigatorl></Navigatorl>
+    );
+  }
+
+}
