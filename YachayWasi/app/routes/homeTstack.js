@@ -11,6 +11,7 @@ import Horarios from '../views/Horarios';
 import firebaseConfig from '../../utils/firebaseConfig';
 import CreateNotice from '../views/CreateNotice';
 import UserDetailScreen from '../views/UserDetailScreen';
+import Login from '../components/login';
 //import Avatar from '../components/avatar'
 
 
@@ -48,6 +49,12 @@ const views = {
     screen: CreateNotice,
     navigationOptions: ({navigation}) => ({
       title: "Agregar Avisos"
+    }),
+  },
+  login: {
+    screen: Login,
+    navigationOptions: ({navigation}) => ({
+      title: "Iniciar Sesipon"
     }),
   },
   UserDetailScreen: {

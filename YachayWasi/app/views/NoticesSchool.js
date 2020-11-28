@@ -5,6 +5,7 @@ import * as firebase from 'firebase/app';
 import 'firebase/firestore';
 import { FlatList } from 'react-native-gesture-handler';
 import NoticeFrom from "../components/NoticeForm";
+import { render } from 'react-dom';
 
 const db = firebase.app();
 
@@ -13,6 +14,15 @@ const NoticesSchool = ({ navigation }) => {
 
   const onBottomPress  = () => { 
     navigation.navigate('CreateNotice');
+  }
+
+  const onBottonForm = () => {
+    navigation.navigate('login');
+  }
+
+  const onUpdateNotice = (key) => {
+    navigation.navigate('CreateNotice');
+    console.log(key, "bajo");
   }
 
   const [ListNotices, setListNotices] = useState([])
@@ -36,19 +46,33 @@ const NoticesSchool = ({ navigation }) => {
     })
     setListNotices(list)
   }
-  const createItem = ({ item }) => (
-    <Card
-      Title={item.aviso}
-      Contenido={item.descripcion}
-      Date={item.date + ""}
-    />
-  );
+  const createItem = ({ item }) => {
+    
+    
+    return(
+      <TouchableOpacity
+        onPress={()=>onUpdateNotice(item.id)}
+        >
+         <Card
+        Title={item.aviso}
+        Contenido={item.descripcion}
+        Date={item.date + ""}
+        />
+      </TouchableOpacity>
+     
+    );
+        
+    
+  }
 
   return (
     <View style={styles.containerHome}>
       <View style={styles.containerCard}>
         <TouchableOpacity style={styles.buttonContainer} onPress={onBottomPress} >
                     <Text style={styles.buttonText}>Crear un Aviso</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.buttonContainer} onPress={onBottonForm} >
+        <Text style={styles.buttonText}>Press me</Text>
         </TouchableOpacity>
         <FlatList
           data={ListNotices}

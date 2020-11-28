@@ -72,7 +72,7 @@ const HomeTeacher = ({ navigation, user1 }) => {
   return (
     <View style={styles.containerHome}>
       <View style={styles.containerWelcom}>
-        <Button onPress={()=>irdetalles()}></Button>
+        <Button title="detalles" onPress={()=>irdetalles()}></Button>
         <Text style={styles.textWelcom}>Bienvenido</Text>
       </View>
       <View style={styles.containerHome}>

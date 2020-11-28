@@ -25,13 +25,14 @@ class NoticeForm extends Component{
             Aviso: this.state.notice,
             Descripcion: this.state.description,
             Fecha: this.state.date,
-        }
-            
-        );
+        })
 
-        
-        
     }
+
+    /*onUpdatePress = (index) => {
+        document.getElementById('tittle').value = "Actualizado";
+        document.getElementById("description").value = "Description";
+    }*/
     
     handleConfirm=(date)=>{
         this.setState({date:date})
@@ -48,12 +49,14 @@ class NoticeForm extends Component{
         return (
             <View style={styles.container} >
                 <TextInput
+                    title = "title"
                     placeholder="Título"
                     value={this.state.notice}
                     style={styles.input}
                     onChangeText={notice => this.setState({notice})} 
                 />
                 <TextInput
+                    title = "description"
                     placeholder={'Descripción. . . '}
                     multiline={true}
                     numberOfLines={25}
@@ -65,55 +68,6 @@ class NoticeForm extends Component{
                 <TouchableOpacity style={styles.buttonDateContainer} onPress={this.openDate}>
                     <Text> Fecha </Text>
                 </TouchableOpacity>
-                <DatePicker
-                    isVisible={this.state.visibility}
-                    onConfirm={this.handleConfirm}
-                    onCancel={this.onPressCancel}
-                />
-                {/*<Textarea
-                    containerStyle={styles.textareaContainer}
-                    style={styles.textarea}
-                    onChangeText={description => this.setState({description})}
-                    defaultValue={this.state.description}
-                    maxLength={120}
-                    placeholder={'Descripción。。。'}
-                    placeholderTextColor={'#c7c7c7'}
-                    underlineColorAndroid={'transparent'}
-                />
-                
-
-                <TextInput
-                    placeholder="Descripcion"
-                    value={this.state.description}
-                    style={styles.inputArea}
-                    onChangeText={description => this.setState({description})}
-                />
-
-                {/*<DatePicker
-                        style={{width: 200, marginBottom:10}}
-                        date={this.state.date}
-                        mode="date"
-                        placeholder="select date"
-                        format="YYYY-MM-DD"
-                        minDate="2016-05-01"
-                        maxDate="2016-06-01"
-                        confirmBtnText="Confirm"
-                        cancelBtnText="Cancel"
-                        customStyles={{
-                        dateIcon: {
-                            position: 'absolute',
-                            left: 0,
-                            top: 4,
-                            marginLeft: 0
-                        },
-                        dateInput: {
-                            marginLeft: 36
-                        }
-                        // ... You can check the source to find the other keys.
-                        }}
-                        
-                        onDateChange={date => this.setState({date})}
-                    />*/}
 
                 <TouchableOpacity style={styles.buttonContainer} onPress={this.onBottomPress} >
                     <Text style={styles.buttonText}>Agragar Aviso</Text>

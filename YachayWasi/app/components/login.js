@@ -6,32 +6,36 @@ import {Button, Text, TextInput, View, Image,  StyleSheet} from 'react-native'
 function Login(){
     return(
         <View style={styles.containerLogin}>
-            <View>
+            <View style={styles.containeLogo}>
                 <Image source={require('../../assets/person_icon.png')} style={styles.logo}/>
             </View>
             
-            <View style={styles.containerTwo}>
-                <TextInput placeholder="  Usuario" placeholderTextColor="white"
-                    style={{marginBottom:15, borderColor: 'white', borderWidth:3, borderRadius:40,height:30}} 
+                <TextInput 
+                    placeholder="Usuario" 
+                   
+                    style={styles.input}
                 ></TextInput>
-                <TextInput textContentType="newPassword" placeholder="  Contraseña" placeholderTextColor="white"
-                    style={{marginBottom:5, borderColor: 'white', borderWidth:3, borderRadius:40, height:30}}  
+                <TextInput 
+                    secureTextEntry 
+                    placeholder="Contraseña" 
+                    /*placeholderTextColor="white"*/
+                    style={styles.input}  
                 ></TextInput>
                 <Text style={{color:'white', marginLeft:10, marginBottom:10}}>olvidó su contraseña?</Text>
-                <View style={{marginBottom:15, backgroundColor: 'rgba(91, 132, 168, 100)'}}>
+                <View style={styles.button}>
                     <Button  
                     title="INGRESAR"
                     color = '#'
                     />
                 </View>
                 
-                <View style={{marginBottom:10, backgroundColor: 'rgba(91, 132, 168, 100)'}}>
+                <View style={styles.button}>
                     <Button  
                     title="CANCELAR"
                     color = '#'
                     />
                 </View>
-            </View>
+            
         </View>
     )
 }
@@ -39,21 +43,40 @@ function Login(){
 export default Login;
 
 const styles = StyleSheet.create({
+    containerLogin:{
+        flex: 1,
+        padding: 20
+    },
     logo :{
-        width: 150,
-        height: 150,
+        width: 90,
+        height: 90,
         borderRadius: 50,
         resizeMode: "contain",
-        marginTop:100
+        marginTop:15,
+        
+    },
+    containeLogo: {
+        alignItems: 'center',
+        marginBottom: 35
     },
     containerTwo:{
         marginTop: 50,
         marginBottom: 50,
         width: 300
     },
-    containerLogin:{
-        width: '100%',
-        alignItems: "center"
+    input: {
+        height: 40,
+        backgroundColor: 'rgba(255,255,255,.5)',
+        padding: 10,
+        marginBottom: 15,
+        borderRadius: 5,
+        fontSize: 15
+    },
+    button: {
+        backgroundColor: 'rgba(91, 132, 168, 100)',
+        padding: 5,
+        borderRadius: 8,
+        marginBottom: 15
     }
 });
 
