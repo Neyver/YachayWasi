@@ -22,7 +22,7 @@ const Home = ({ navigation }) => {
       <Carousel images={images} style={styles.containerCarousel}></Carousel>
       <View style={styles.containerButton}>
         <Button title="Iniciar Sesion"
-          color="#ff35"
+          color="#51CDD7"
           style={styles.buttonIni}
           onPress={pressHandler}
         ></Button>
@@ -35,7 +35,7 @@ const Home = ({ navigation }) => {
 }
 const styles = StyleSheet.create({
   textTitle: { flex: 1, textAlign: "center", marginTop: 12 },
-  container: { flex: 1, backgroundColor: "#888" },
+  container: { flex: 1, backgroundColor: "#4F728E" },
   containerCarousel: { flex: 4 },
   containerButton: { flex: 3, alignSelf: "center", justifyContent: "center" },
   buttonIni: { padding: 10 },

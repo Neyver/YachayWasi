@@ -6,19 +6,22 @@ import React, { useState, useEffect } from 'react';
 import 'firebase/firestore';
 
 import firebaseConfig from '../../utils/firebaseConfig';
-const HomeStudent = ({ navigation, user1 }) => {
+const HomeStudent = ({ navigation }) => {
+
+  const [user1, onChangeText1] = React.useState('hola');
 
   useEffect(() => {
-    firebaseConfig.auth().onAuthStateChanged(user => {
-      console.log(user);
-    })
+    //firebaseConfig.auth().onAuthStateChanged(user => {
+    //console.log(user);
+    // onChangeText1(user.uid)
+
+    //})
   });
-  
-  const irdetalles = ()=>{
+
+  const irdetalles = () => {
     console.log('AAAAAAAAA')
-    navigation.navigate('UserDetailScreen');
-    console.log(navigation,user1)
-    
+    navigation.navigate('Prueba1', { user: "XD" });
+    //console.log(navigation,user)
   }
 
   const options =
@@ -27,12 +30,14 @@ const HomeStudent = ({ navigation, user1 }) => {
         action: () => {
 
         },
-        name: "Mis Cursos",
+        name: "Mis Notas",
         uriIcon: 'https://www.esfmjuanmisaelsaracho.edu.bo/images/especialidad.png',
         color: "#f20c0c"
       },
       {
-        action: () => { },
+        action: () => {
+          navigation.navigate('Schedule');
+        },
         name: "Horario",
         uriIcon: 'https://image.flaticon.com/icons/png/512/376/376853.png',
         color: "#5976b3"
@@ -68,7 +73,7 @@ const HomeStudent = ({ navigation, user1 }) => {
   return (
     <View style={styles.containerHome}>
       <View style={styles.containerWelcom}>
-        <Button onPress={()=>irdetalles()}></Button>
+        
         <Text style={styles.textWelcom}>Bienvenido</Text>
       </View>
       <View style={styles.containerHome}>
@@ -81,7 +86,7 @@ const HomeStudent = ({ navigation, user1 }) => {
 const styles = StyleSheet.create({
   containerHome: {
     flex: 1,
-    backgroundColor: "#888"
+    backgroundColor: "#4F728E"
   },
   containerWelcom: {
     flex: 1,

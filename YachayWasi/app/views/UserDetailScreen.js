@@ -18,18 +18,25 @@ const UserDetailScreen = (props) => {
         //console.log(user.uid);
         onChangeText1(user.uid)
         //getDetailsUser()
+        getUserById(user.uid)
+        
       })
       
      // console.log(db.firestore().collection('Actividades').get())
     
       
-    });
+    },[]);
     const [user, setUser] =useState({
-        id:'fsdfasd',
-        name:'fsdfas',
-        email:'asdfasf',
-        phone:'fasdfasdfsd'
+        id:'Aqui tiene el ide',
+        name:'Aqui otra cosa',
+        email:'fsdafa',
+        phone:'fsadf',
+        photo:'fdf',
     })
+
+    const handleChangeText = (name,value) =>{
+      setUser({...user,[name]: value });
+  }  
 
     const getDetailsUser = async () => {
       let list = [];
@@ -42,31 +49,50 @@ const UserDetailScreen = (props) => {
         let phone = document.data().phone
         let obj = { id, name, email, phone }
         list.push(obj);
+        setUser ({
+            ...user,
+            id: user.ui,          
+        })   
+        console.log(user);
       })
       console.log(list)
+
     }
     const getUserById = async (id) =>{
+       
+      const response = await db.firestore().collection('users').doc(id);
+      const documento = await response.get();
+      const usuario = documento.data();
+      console.log(usuario) 
+
+      setUser ({
+         ...user,
+           id: Texto1,
+           email: usuario.email,
+           name: usuario.name,
+           phone : usuario.phone,
+           photo : usuario.photo       
+        }) 
       
-        console.log(firebase.db.collection('users'))
-        const dbRef = await firebase.db.collection('users').doc(id)
-        console.log(firebase.db.collection('users'))
-        const doc = await dbRef.get();
-        console.log(doc)
-        const user = doc.data();
-        console.log(user)
-        setUser ({
-          ...user,
-           id: Texto1,          
-        })       
+
+        //console.log(firebase.db.collection('users'))
+       //const dbRef = await firebase.db.collection('users').doc("'"+{Texto1}+"'")
+        //console.log(firebase.db.collection('users'))
+        //const doc = await dbRef.get();
+        //console.log(doc)
+        //const user = doc.data();
+        //console.log(user)
+        //setUser ({
+         // ...user,
+          // id: Texto1,          
+       // })       
     };
     //   useEffect(()=>{
       //     getUserById(props.route.params.userId) ;  
     //},[]);
     
 
-    const handleChangeText = (name,value) =>{
-        setUser({...user,[name]: value });
-    }  
+    
     const hm = () => {
       console.log(Texto1);
     }
@@ -82,7 +108,7 @@ const UserDetailScreen = (props) => {
             </TextInput>
             <Button  title="Mostrar" color="rgba(91,132,168,100)" onPress={hm}></Button>
             </View>
-            <Avatar name='Laura' linkphoto ='https://i.pinimg.com/564x/e0/b7/e8/e0b7e895361da676c3d709170508cc39.jpg' ></Avatar>
+            <Avatar name= {user.name} linkphoto ={user.photo} ></Avatar>
 
         <View style={styles.body}>            
            <View style={styles.container1}>
@@ -127,7 +153,7 @@ const styles = StyleSheet.create({
         flex:1,
         //justifyContent:'center',
         //alignItems : 'center',
-        backgroundColor :'rgb(64,97,115)'
+        backgroundColor :'#4F728E'
       },
     container1:{
         flexDirection : 'column',
