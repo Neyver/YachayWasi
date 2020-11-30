@@ -52,7 +52,7 @@ const ActivitiesSchool = ({ navigation }) => {
 const styles = StyleSheet.create({
   containerHome: {
     flex: 1,
-    backgroundColor: "#888"
+    backgroundColor: "#4F728E"
   },
   containerCard: {
     flex: 1,

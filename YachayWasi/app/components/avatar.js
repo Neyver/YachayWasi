@@ -14,9 +14,8 @@ const avatar = ({ name, linkphoto }) => {
         />
         <Image
           style={styles.imageT}
-          source={require('../../assets/perfil.png')}
+          source={require('../../assets/tuerca.png')}
         />
-
       </View>
       <Text style={styles.textColorBold}>{name}</Text>
     </View>
@@ -64,7 +63,7 @@ const styles = StyleSheet.create({
   textColorBold: {
     color: 'white',
     fontWeight: 'bold',
-    fontSize: 20
+    fontSize: 24
   }
 
 })
