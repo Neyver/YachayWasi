@@ -24,6 +24,7 @@ const HomeTeacher = ({ navigation, user1 }) => {
     [
       {
         action: () => {
+          navigation.navigate('Courses');
 
         },
         name: "Mis Cursos",
