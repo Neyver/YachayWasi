@@ -8,6 +8,7 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@react-native-community/datetimepicker": "^3.0.5",
     "@react-native-community/masked-view": "^0.1.10",
     "@react-navigation/native": "^5.8.1",
     "@react-navigation/stack": "^5.11.0",
@@ -17,11 +18,15 @@
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-39.0.3.tar.gz",
+    "react-native-date-picker": "^3.2.5",
     "react-native-easy-grid": "^0.2.2",
     "react-native-gesture-handler": "^1.8.0",
+    "react-native-modal-datetime-picker": "^9.1.0",
     "react-native-reanimated": "^1.13.1",
     "react-native-safe-area-context": "^3.1.8",
     "react-native-screens": "^2.12.0",
+    "react-native-textarea": "^1.0.4",
+    "react-native-ui-xg": "0.0.6",
     "react-native-table-component": "^1.2.1",
     "react-native-table-component-mroads": "^1.0.6",
     "react-native-timetable": "^1.0.4",

@@ -8,6 +8,8 @@ import NavigatorT from './app/routes/homeTstack';
 import NavigatorP from './app/routes/homePstack';
 import NavigatorS from './app/routes/homeEstack';
 
+import UserLogin from './app/views/user_login.js';
+
 export default function App() {
   const [loggedIn, onChangeLog] = useState(false);
   const [newUser, onChangeNewUser] = React.useState('');

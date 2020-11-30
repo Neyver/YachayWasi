@@ -48,7 +48,9 @@ const HomeTeacher = ({ navigation, user1 }) => {
         color: "#5976b3"
       },
       {
-        action: () => { },
+        action: () => { 
+          navigation.navigate('NoticesSchool');
+        },
         name: "Avisos",
         uriIcon: 'https://images.vexels.com/media/users/3/157272/isolated/preview/e6d8b2a22f0f860af01343af96e94a8a-libros-apilados-vector-by-vexels.png',
         color: "red"
@@ -70,6 +72,7 @@ const HomeTeacher = ({ navigation, user1 }) => {
   return (
     <View style={styles.containerHome}>
       <View style={styles.containerWelcom}>
+        <Button title="detalles" onPress={()=>irdetalles()}></Button>
         <Text style={styles.textWelcom}>Bienvenido</Text>
       </View>
       <View style={styles.containerHome}>
