@@ -43,7 +43,7 @@ const Courses = (props) => {
 
     const getDetailsUser = async () => {
       let list = [];
-      const response = await db.firestore().collection('users').get();
+      const response = await db.firestore().collection('Usuario').get();
   
       response.forEach(document => {
         let id = document.id
@@ -63,10 +63,10 @@ const Courses = (props) => {
     }
     const getUserById = async (id) =>{
       let list = []; 
-      const response = await db.firestore().collection('users').doc(id);
+      const response = await db.firestore().collection('Usuario').doc(id);
       const documento = await response.get();
       const usuario = documento.data();
-      const cursos = await db.firestore().collection('users').doc(id).collection('courses').get();
+      const cursos = await db.firestore().collection('Usuario').doc(id).collection('courses').get();
      
      cursos.forEach(curso =>{
        let id =curso.id
@@ -82,7 +82,7 @@ const Courses = (props) => {
          ...user,
            id: Texto1,
            email: usuario.email,
-           name: usuario.name,
+           name: usuario.Nombre,
            phone : usuario.phone,
            photo : usuario.photo       
         }) 

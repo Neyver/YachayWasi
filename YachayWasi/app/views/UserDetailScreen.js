@@ -40,7 +40,7 @@ const UserDetailScreen = (props) => {
 
     const getDetailsUser = async () => {
       let list = [];
-      const response = await db.firestore().collection('users').get();
+      const response = await db.firestore().collection('Usuario').get();
   
       response.forEach(document => {
         let id = document.id
