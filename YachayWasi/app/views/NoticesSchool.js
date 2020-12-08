@@ -33,7 +33,7 @@ const NoticesSchool = ({ navigation }) => {
 
   const getActivities = async () => {
     let list = [];
-    const response = await db.firestore().collection('Avisos').get();
+    const response = await db.firestore().collection('Aviso').get();
 
 
     response.forEach(document => {

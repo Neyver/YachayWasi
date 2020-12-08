@@ -60,7 +60,7 @@ const UserDetailScreen = (props) => {
     }
     const getUserById = async (id) =>{
        
-      const response = await db.firestore().collection('users').doc(id);
+      const response = await db.firestore().collection('Usuario').doc(id);
       const documento = await response.get();
       const usuario = documento.data();
       console.log(usuario) 
@@ -68,10 +68,10 @@ const UserDetailScreen = (props) => {
       setUser ({
          ...user,
            id: Texto1,
-           email: usuario.email,
-           name: usuario.name,
-           phone : usuario.phone,
-           photo : usuario.photo       
+           email: usuario.Correo,
+           name: usuario.Nombre,
+           phone : usuario.Telefono,
+           photo : usuario.Foto       
         }) 
       
 
