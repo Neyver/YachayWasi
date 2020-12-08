@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, StyleSheet } from 'react-native';
-import Card from '../components/card';
+import Activcard from '../components/actividadCard';
 import * as firebase from 'firebase/app';
 import 'firebase/firestore';
 import { FlatList } from 'react-native-gesture-handler';
@@ -13,23 +13,28 @@ const ActivitiesSchool = ({ navigation }) => {
   useEffect(() => {
     getActivities();
   }, [])
-
+  
   const getActivities = async () => {
     let list = [];
     const response = await db.firestore().collection('Actividad').get();
-
+    
     response.forEach(document => {
       let id = document.id
-      let date = document.data().Fecha
+      let date =   convertDate(document.data().FechaLimite.toDate())
       let descripcion = document.data().Descripcion
-      let actividad = document.data().Actividad
+      let actividad = document.data().Titulo
       let obj = { id, actividad, descripcion, date }
       list.push(obj);
     })
     setListActivities(list)
   }
+  
+    const convertDate = (date) => {
+      var d = date.toString()
+      return d.substr(0, 21);
+    }
   const createItem = ({ item }) => (
-    <Card
+    <Activcard
       Title={item.actividad}
       Contenido={item.descripcion}
       Date={item.date + ""}
