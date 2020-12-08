@@ -8,6 +8,7 @@ import EmailAndPassword from '../components/EmailAndPassword';
 import ActivitiesSchool from '../views/ActivitiesSchool';
 import firebaseConfig from '../../utils/firebaseConfig';
 import UserDetailScreen from '../views/UserDetailScreen';
+import MyScore from '../views/myScore';
 import Prueba from '../views/Prueba';
 //import Avatar from '../components/avatar'
 
@@ -52,6 +53,20 @@ const views = {
     screen: EmailAndPassword,
     navigationOptions: ({ navigation }) => ({
       title: "Iniciar Sesion",
+      headerStyle: {
+        backgroundColor: '#475B6F',
+      },
+      headerTintColor: '#fff',
+      headerTitleStyle: {
+        alignSelf: 'center',
+        fontWeight: 'bold',
+      },
+    }),
+  },
+  MyScore: {
+    screen: MyScore,
+    navigationOptions: ({ navigation }) => ({
+      title: "Mis calificaciones",
       headerStyle: {
         backgroundColor: '#475B6F',
       },
