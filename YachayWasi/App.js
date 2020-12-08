@@ -30,7 +30,7 @@ export default function App() {
     })
   }, []);
 
-  const getUserById = async (id) => {
+    const getUserById = async (id) => {
     const response = await db.firestore().collection('Usuario').doc(id);
     const documento = await response.get();
     const usuario = documento.data();
@@ -38,6 +38,7 @@ export default function App() {
   };
 
   if (loggedIn) {
+     
 
     if (rolLogged.Rol === 'Profesor') {
       return (
