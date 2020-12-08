@@ -28,7 +28,7 @@ const HomeStudent = ({ navigation }) => {
     [
       {
         action: () => {
-
+          navigation.navigate('MyScore');
         },
         name: "Mis Notas",
         uriIcon: 'https://www.esfmjuanmisaelsaracho.edu.bo/images/especialidad.png',
