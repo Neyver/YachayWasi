@@ -13,6 +13,7 @@ import firebaseConfig from '../../utils/firebaseConfig';
 import CreateNotice from '../views/CreateNotice';
 import UserDetailScreen from '../views/UserDetailScreen';
 import Login from '../components/login';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 //import Avatar from '../components/avatar'
 
 const views = {
@@ -23,6 +24,17 @@ const views = {
       const irdetalles = () => {
         navigation.navigate('UserDetailScreen');
       };
+      const loggOut = async () => {
+        navigation.pop();
+        try {
+          await AsyncStorage.setItem('loggInd', false);
+          firebaseConfig.auth().signOut();
+          console.log("goooo on");
+        } catch (e) {
+          console.log("pooofdsgdhts");
+        }
+      }
+      
       return ({
         title: "Profesor",
         headerStyle: {
@@ -34,7 +46,11 @@ const views = {
           fontWeight: 'bold',
         },
         headerLeft: () => (
-          <TouchableOpacity style={{ padding: 20 }} onPress={() => firebaseConfig.auth().signOut()} >
+          <TouchableOpacity style={{ padding: 20 }} 
+            onPress={ 
+              () => loggOut()
+            } 
+            >
             <Text style={{ color: '#fff', fontWeight: 'bold' }} >Salir</Text>
           </TouchableOpacity>
         ),
@@ -89,13 +105,13 @@ const views = {
   },
   CreateNotice: {
     screen: CreateNotice,
-    navigationOptions: ({navigation}) => ({
+    navigationOptions: ({ navigation }) => ({
       title: "Agregar Avisos"
     }),
   },
   login: {
     screen: Login,
-    navigationOptions: ({navigation}) => ({
+    navigationOptions: ({ navigation }) => ({
       title: "Iniciar Sesipon"
     }),
   },
@@ -143,7 +159,6 @@ const views = {
     }),
   }
 }
-
 
 const HomeTstack = createStackNavigator(views);
 

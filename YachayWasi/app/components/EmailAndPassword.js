@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import firebase from 'firebase'
 import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 // create a component
 class EmailAndPassword extends Component {
     state = {
@@ -12,7 +12,8 @@ class EmailAndPassword extends Component {
         loading: false
     }
 
-    onBottomPress = () => {
+    onBottomPress = async () => {
+        try{
         firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
             .then(this.onLoginSuccess)
             .catch(err => {
@@ -20,8 +21,15 @@ class EmailAndPassword extends Component {
                     error: err.message
                 })
             })
-            console.log(this.state.email);
-            console.log(this.state.password);
+            await AsyncStorage.setItem('userEmail', this.state.email);
+            await AsyncStorage.setItem('userPassword', this.state.password);
+            await AsyncStorage.setItem('loggInd', true);
+            await AsyncStorage.setItem('userRol', 'Profesor');
+            
+        }catch{
+          console.log("errorrrrrrrrrrrrrr");      
+        }
+        getEmailData()
     }
     onLoginSuccess = () => {
         this.setState({
@@ -29,7 +37,7 @@ class EmailAndPassword extends Component {
             loading: false
         })
     }
-
+    
 
     render() {
         return (
@@ -62,6 +70,17 @@ class EmailAndPassword extends Component {
         );
     }
 }
+const getEmailData = async () => {
+    try {
+      const value = await AsyncStorage.getItem('userEmail')
+      if(value !== null) {
+          console.log("lalala");
+        console.log(value);
+      }
+    } catch(e) {
+      // error reading value
+    }
+  }
 
 // define your styles
 const styles = StyleSheet.create({

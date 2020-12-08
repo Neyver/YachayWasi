@@ -2,6 +2,8 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import { StyleSheet, ScrollView, Text, View, Dimensions, Image, Slider, Button } from 'react-native';
 import Carousel from '../components/Carousel'
+import * as firebase from 'firebase/app';
+import 'firebase/firestore';
 const images = [
   'https://c4.wallpaperflare.com/wallpaper/912/238/496/architecture-artistic-buildings-castle-wallpaper-preview.jpg',
   'https://c0.wallpaperflare.com/preview/638/482/358/castle-lawn-great-britain-england.jpg',
@@ -9,14 +11,30 @@ const images = [
   'https://c1.wallpaperflare.com/preview/544/345/284/library-books-knowledge-information.jpg',
   'https://c1.wallpaperflare.com/preview/160/500/36/various-college-education-learning.jpg',
 ];
-
+//const db = firebase.app();
 const Home = ({ navigation }) => {
+  //console.log("ssssssss");
+  // var tipoUsuario="";
+  // const usr = db.firestore().collection('Usuario').doc("usuario0");
+  // var docRef = db.firestore().collection("Usuario").doc("usuario0");
+  //   docRef.get().then(function(doc) {
+  //       if (doc.exists) {
+  //           tipoUsuario = doc.data().Rol;
+  //         } else {
+  //           // doc.data() will be undefined in this case
+  //           console.log("No such document!");
+  //       }
+  //   }).catch(function(error) {
+  //       console.log("Error getting document:", error);
+  //   });
+  //   console.log(tipoUsuario);
 
   const pressHandler = () => {
     navigation.navigate('EmailAndPassword');
   }
 
   return (
+
     <View style={styles.container}>
       <Text style={styles.textTitle}>Unidad Educativa Cositas React-Native</Text>
       <Carousel images={images} style={styles.containerCarousel}></Carousel>

@@ -8,6 +8,8 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@ef-carbon/react-native-async-button": "^5.0.0",
+    "@react-native-async-storage/async-storage": "^1.13.2",
     "@react-native-community/datetimepicker": "^3.0.5",
     "@react-native-community/masked-view": "^0.1.10",
     "@react-navigation/native": "^5.8.1",
@@ -25,11 +27,11 @@
     "react-native-reanimated": "^1.13.1",
     "react-native-safe-area-context": "^3.1.8",
     "react-native-screens": "^2.12.0",
-    "react-native-textarea": "^1.0.4",
-    "react-native-ui-xg": "0.0.6",
     "react-native-table-component": "^1.2.1",
     "react-native-table-component-mroads": "^1.0.6",
+    "react-native-textarea": "^1.0.4",
     "react-native-timetable": "^1.0.4",
+    "react-native-ui-xg": "0.0.6",
     "react-native-web": "~0.13.12",
     "react-navigation": "^4.4.3",
     "react-navigation-stack": "^2.9.0"
