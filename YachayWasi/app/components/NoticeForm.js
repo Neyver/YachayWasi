@@ -5,6 +5,8 @@ import * as firebase from 'firebase/app';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 //import Textarea from 'react-native-textarea';
 import DatePicker from 'react-native-modal-datetime-picker'
+import DropDownPicker from 'react-native-dropdown-picker';
+import Icon from 'react-native-vector-icons/Feather';
 
 
 
@@ -18,6 +20,8 @@ class NoticeForm extends Component{
         description:'',
         date:'',
         visibility:false,
+        countries: ['uk'],
+        teacher:'Docente',
     }
 
     onBottomPress = () => {
@@ -55,6 +59,26 @@ class NoticeForm extends Component{
                     style={styles.input}
                     onChangeText={notice => this.setState({notice})} 
                 />
+
+                <DropDownPicker
+                    items={[
+                        {label: 'Leonardo', value: 'uk', icon: () => <Icon name="plus" size={18} color="#900" />},
+                        {label: 'Leonal', value: 'france', icon: () => <Icon name="plus" size={18} color="#900" />},
+                    ]}
+                
+                    multiple={true}
+                    multipleText="%d Selecciona un Estudiante"
+                    min={0}
+                    max={10}
+                    style={styles.dropContainer}
+                    defaultValue={this.state.countries}
+                    
+                    onChangeItem={item => this.setState({
+                        countries: item // an array of the selected items
+                    })}
+                    
+                />
+
                 <TextInput
                     title = "description"
                     placeholder={'Descripción. . . '}
@@ -94,7 +118,7 @@ const styles = StyleSheet.create({
     },
     textarea: {
         textAlignVertical: 'top',  // hack android
-        height: 170,
+        height: 190,
         fontSize: 14,
         color: '#333',
         backgroundColor: 'rgba(255,255,255,.5)',
@@ -117,6 +141,14 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(255,255,255,.5)',
         marginBottom: 15,
         width: 70
+    },
+    dropContainer: {
+        backgroundColor: 'rgba(255,255,255,.5)',
+        marginBottom: 15,
+        borderRadius: 8,
+        height: 40,
+        fontSize: 15,
+        paddingLeft: 10,
     }
 });
 
