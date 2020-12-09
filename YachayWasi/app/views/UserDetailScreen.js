@@ -1,37 +1,22 @@
 import React, { useEffect, useState } from 'react'
-import {View, Text,StyleSheet, Button,TextInput } from 'react-native'
+import { View, Text, StyleSheet, Button, TextInput } from 'react-native'
 import * as firebase from 'firebase/app';
 import 'firebase/firestore';
 import Form_teacher from '../components/teacher_form'
 import Avatar from '../components/avatar';
-//import Avatar from '../components/avatar'
 
 import firebaseConfig from '../../utils/firebaseConfig';
 
 const db = firebase.app();
 
 const UserDetailScreen = (props) => {
-    //console.log(props.route.params.userId)
-    const [Texto1, onChangeText1] = React.useState('');
-    useEffect(() => {
-      firebaseConfig.auth().onAuthStateChanged(user => {
-        //console.log(user.uid);
-        onChangeText1(user.uid)
-        //getDetailsUser()
-        getUserById(user.uid)
-        
-      })
-      
-     // console.log(db.firestore().collection('Actividades').get())
-    
-      
-    },[]);
-    const [user, setUser] =useState({
-        id:'Aqui tiene el ide',
-        name:'Aqui otra cosa',
-        email:'fsdafa',
-        phone:'fsadf',
-        photo:'fdf',
+  const [Texto1, onChangeText1] = useState('');
+  useEffect(() => {
+    firebaseConfig.auth().onAuthStateChanged(user => {
+      onChangeText1(user.uid)
+      //getDetailsUser()
+      getUserById(user.uid)
+
     })
 
     const handleChangeText = (name,value) =>{
@@ -115,71 +100,68 @@ const UserDetailScreen = (props) => {
           <View style={{left:100}}>
           <Button  title="Editar" color="rgba(91,132,168,100)" onPress={edit}></Button>
           </View>
-         <View style={styles.row}>
-            
+          <View style={styles.row}>
+
             <Text style={styles.textColor} >
-            Nombre de Usuario:</Text>
-            <TextInput editable = {disable_text} placeholder="" placeholderTextColor="white" maxLength={15} value={user.name} onChangeText={(value) => handleChangeText("name",value)} 
-            style={{ borderWidth : 1, borderColor : 'white', padding :5, marginTop : 7 }}
-             >
+              Nombre de Usuario:</Text>
+            <TextInput editable={disable_text} placeholder="" placeholderTextColor="white" maxLength={15} value={user.name} onChangeText={(value) => handleChangeText("name", value)}
+              style={{ borderWidth: 1, borderColor: 'white', padding: 5, marginTop: 7 }}
+            >
             </TextInput>
           </View>
           <View style={styles.row}>
             <Text style={styles.textColor}>
-            Numero Telefónico:</Text>
-            <TextInput editable = {disable_text} placeholder="" placeholderTextColor="white" maxLength={10} value={user.phone} onChangeText={(value) => handleChangeText("phone",value)} 
-            style={{ borderWidth : 1, borderColor : 'white', padding :5, marginTop : 7 }}
-             >
+              Numero Telefónico:</Text>
+            <TextInput editable={disable_text} placeholder="" placeholderTextColor="white" maxLength={10} value={user.phone} onChangeText={(value) => handleChangeText("phone", value)}
+              style={{ borderWidth: 1, borderColor: 'white', padding: 5, marginTop: 7 }}
+            >
             </TextInput>
           </View>
           <View style={styles.row}>
             <Text style={styles.textColor}>
-            Correo Electronico:</Text>
-            <TextInput editable = {disable_text} placeholder="" placeholderTextColor="white" maxLength={30} value={user.email} onChangeText={(value) => handleChangeText("email",value)} 
-            style={{ borderWidth : 1, borderColor : 'white', padding :5, marginTop : 7 }}
-             >
+              Correo Electronico:</Text>
+            <TextInput editable={disable_text} placeholder="" placeholderTextColor="white" maxLength={30} value={user.email} onChangeText={(value) => handleChangeText("email", value)}
+              style={{ borderWidth: 1, borderColor: 'white', padding: 5, marginTop: 7 }}
+            >
             </TextInput>
           </View>
-          <View style={{ marginTop : 10,}}>
-          <Button  title="GUARDAR" color="rgba(91,132,168,100)"></Button>
-          </View>      
-        </View>             
+          <View style={{ marginTop: 10, }}>
+            <Button title="GUARDAR" color="rgba(91,132,168,100)"></Button>
+          </View>
         </View>
-        </View>
-    )
+      </View>
+    </View>
+  )
 }
+
 const styles = StyleSheet.create({
-    container:{
-        flex:1,
-        //justifyContent:'center',
-        //alignItems : 'center',
-        backgroundColor :'#4F728E'
-      },
-    container1:{
-        flexDirection : 'column',
-        alignItems : 'center',
-    justifyContent : 'center',
-    },
-    row :{
-        flexDirection : 'row' 
-      },
-      textColor : {
-        color : 'white',
-        padding :10,
-        
-      }, 
-      body:{
-        flex:1,
-        //backgroundColor:'yellow',
-        justifyContent:'center',
-        alignItems : 'center',
-        top: -100
-       },
-       header:{
-        flex: 0.2,
-        //backgroundColor:"red",
-        alignItems : 'center',
-        
-      },
+  container: {
+    flex: 1,
+    backgroundColor: '#4F728E'
+  },
+  container1: {
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  row: {
+    flexDirection: 'row'
+  },
+  textColor: {
+    color: 'white',
+    padding: 10,
+
+  },
+  body: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    top: -100
+  },
+  header: {
+    flex: 0.2,
+    alignItems: 'center',
+
+  },
 })
 export default UserDetailScreen 
