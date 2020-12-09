@@ -19,86 +19,74 @@ const UserDetailScreen = (props) => {
 
     })
 
-    const handleChangeText = (name,value) =>{
-      setUser({...user,[name]: value });
-  }  
+  }, []);
+  const [user, setUser] = useState({
+    id: 'Aqui tiene el ide',
+    name: 'Aqui otra cosa',
+    email: 'fsdafa',
+    phone: 'fsadf',
+    photo: 'fdf',
+  })
 
-    const getDetailsUser = async () => {
-      let list = [];
-      const response = await db.firestore().collection('Usuario').get();
-  
-      response.forEach(document => {
-        let id = document.id
-        let name = document.data().name
-        let email = document.data().email
-        let phone = document.data().phone
-        let obj = { id, name, email, phone }
-        list.push(obj);
-        setUser ({
-            ...user,
-            id: user.ui,          
-        })   
-        console.log(user);
+  const handleChangeText = (name, value) => {
+    setUser({ ...user, [name]: value });
+  }
+
+  const getDetailsUser = async () => {
+    let list = [];
+    const response = await db.firestore().collection('users').get();
+
+    response.forEach(document => {
+      let id = document.id
+      let name = document.data().name
+      let email = document.data().email
+      let phone = document.data().phone
+      let obj = { id, name, email, phone }
+      list.push(obj);
+      setUser({
+        ...user,
+        id: user.ui,
       })
-      console.log(list)
+    })
+  }
+  const getUserById = async (id) => {
 
-    }
-    const getUserById = async (id) =>{
-       
-      const response = await db.firestore().collection('Usuario').doc(id);
-      const documento = await response.get();
-      const usuario = documento.data();
-      console.log(usuario) 
+    const response = await db.firestore().collection('Usuario').doc(id);
+    const documento = await response.get();
+    const usuario = documento.data();
 
-      setUser ({
-         ...user,
-           id: Texto1,
-           email: usuario.Correo,
-           name: usuario.Nombre,
-           phone : usuario.Telefono,
-           photo : usuario.Foto       
-        }) 
-      
+    setUser({
+      ...user,
+      id: Texto1,
+      email: usuario.Correo,
+      name: usuario.Nombre,
+      phone: usuario.Telefono,
+      photo: usuario.Foto
+    })
 
-        //console.log(firebase.db.collection('users'))
-       //const dbRef = await firebase.db.collection('users').doc("'"+{Texto1}+"'")
-        //console.log(firebase.db.collection('users'))
-        //const doc = await dbRef.get();
-        //console.log(doc)
-        //const user = doc.data();
-        //console.log(user)
-        //setUser ({
-         // ...user,
-          // id: Texto1,          
-       // })       
-    };
-    //   useEffect(()=>{
-      //     getUserById(props.route.params.userId) ;  
-    //},[]);
-    
+  };
 
-    
-    const hm = () => {
-      console.log(Texto1);
-    }
-    const [disable_text, edit] = React.useState(false);
-    return(
+  const hm = () => {
+    console.log(Texto1);
+  }
+  const [disable_text, edit] = React.useState(false);
+  return (
 
-        <View style={styles.container}>
-          
-            <View style={styles.header} >
-            <TextInput  placeholder="" placeholderTextColor="white" maxLength={15} value={Texto1} onChangeText={text => onChangeText1(text)} 
-            style={{ borderWidth : 1, borderColor : 'white', padding :5, marginTop : 7 }}
-             >
-            </TextInput>
-            <Button  title="Mostrar" color="rgba(91,132,168,100)" onPress={hm}></Button>
-            </View>
-            <Avatar name= {user.name} linkphoto ={user.photo} ></Avatar>
+    <View style={styles.container}>
 
-        <View style={styles.body}>            
-           <View style={styles.container1}>
-          <View style={{left:100}}>
-          <Button  title="Editar" color="rgba(91,132,168,100)" onPress={edit}></Button>
+      <View style={styles.header} >
+        <TextInput placeholder="" placeholderTextColor="white" maxLength={15} value={Texto1} onChangeText={text => onChangeText1(text)}
+          style={{ borderWidth: 1, borderColor: 'white', padding: 5, marginTop: 7 }}
+        >
+        </TextInput>
+        <Button title="Mostrar" color="rgba(91,132,168,100)" onPress={hm}></Button>
+      </View>
+      <Avatar name={user.name} linkphoto={user.photo} ></Avatar>
+
+      <View style={styles.body}>
+        <View style={styles.container1}>
+          <View style={{ left: 100 }}>
+            <Button title="Editar" color="rgba(91,132,168,100)" onPress={edit}></Button>
           </View>
           <View style={styles.row}>
 
