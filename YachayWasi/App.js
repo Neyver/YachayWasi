@@ -34,9 +34,7 @@ export default function App() {
     const response = await db.firestore().collection('Usuario').doc(id);
     const documento = await response.get();
     const usuario = documento.data();
-    console.log(usuario);
     onChangeNrolLogged(usuario);
-    console.log(rolLogged);
   };
 
   if (loggedIn) {
