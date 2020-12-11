@@ -20,10 +20,10 @@ const MyScore = ({ navigation }) => {
 
     response.forEach(document => {
       let id = document.id
-      let pBimestre = document.data().PBimestre
-      let sBimestre = document.data().SBimestre
-      let tBimestre = document.data().TBimestre
-      let cBimestre = document.data().CBimestre
+      let pBimestre = document.data().PB
+      let sBimestre = document.data().SB
+      let tBimestre = document.data().TB
+      let cBimestre = document.data().CB
       let materia = document.data().Materia
       let profesor = document.data().Profesor
       let obj = { id, materia, profesor, pBimestre, sBimestre, tBimestre, cBimestre}
