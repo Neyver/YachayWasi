@@ -31,7 +31,7 @@ const NoticesSchool = ({ navigation }) => {
     const response = db.firestore().collection('Avisos').doc(key).delete().then(
       function(){
         console.log("Aviso eliminada correctamente");
-        navigation.useState
+        navigation.navigate('NoticesSchool');
       }
     ).catch(
       function(error){
