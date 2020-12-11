@@ -7,17 +7,8 @@ import 'firebase/firestore';
 import firebaseConfig from '../../utils/firebaseConfig';
 const HomeTeacher = ({ navigation, user1 }) => {
 
-  useEffect(() => {
-    firebaseConfig.auth().onAuthStateChanged(user => {
-      console.log(user);
-    })
-  });
-
   const irdetalles = () => {
-    console.log('AAAAAAAAA')
     navigation.navigate('UserDetailScreen');
-    console.log(navigation, user1)
-
   }
 
   const options =
@@ -48,7 +39,7 @@ const HomeTeacher = ({ navigation, user1 }) => {
         color: "#5976b3"
       },
       {
-        action: () => { 
+        action: () => {
           navigation.navigate('NoticesSchool');
         },
         name: "Avisos",
@@ -72,7 +63,7 @@ const HomeTeacher = ({ navigation, user1 }) => {
   return (
     <View style={styles.containerHome}>
       <View style={styles.containerWelcom}>
-        <Button title="detalles" onPress={()=>irdetalles()}></Button>
+        <Button title="detalles" onPress={() => irdetalles()}></Button>
         <Text style={styles.textWelcom}>Bienvenido</Text>
       </View>
       <View style={styles.containerHome}>

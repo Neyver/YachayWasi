@@ -10,9 +10,9 @@ import { render } from 'react-dom';
 const db = firebase.app();
 
 const NoticesSchool = ({ navigation }) => {
-  
 
-  const onBottomPress  = () => { 
+
+  const onBottomPress = () => {
     navigation.navigate('CreateNotice');
   }
 
@@ -22,7 +22,6 @@ const NoticesSchool = ({ navigation }) => {
 
   const onUpdateNotice = (key) => {
     navigation.navigate('CreateNotice');
-    console.log(key, "bajo");
   }
 
   const [ListNotices, setListNotices] = useState([])
@@ -47,32 +46,32 @@ const NoticesSchool = ({ navigation }) => {
     setListNotices(list)
   }
   const createItem = ({ item }) => {
-    
-    
-    return(
+
+
+    return (
       <TouchableOpacity
-        onPress={()=>onUpdateNotice(item.id)}
-        >
-         <Card
-        Title={item.aviso}
-        Contenido={item.descripcion}
-        Date={item.date + ""}
+        onPress={() => onUpdateNotice(item.id)}
+      >
+        <Card
+          Title={item.aviso}
+          Contenido={item.descripcion}
+          Date={item.date + ""}
         />
       </TouchableOpacity>
-     
+
     );
-        
-    
+
+
   }
 
   return (
     <View style={styles.containerHome}>
       <View style={styles.containerCard}>
         <TouchableOpacity style={styles.buttonContainer} onPress={onBottomPress} >
-                    <Text style={styles.buttonText}>Crear un Aviso</Text>
+          <Text style={styles.buttonText}>Crear un Aviso</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.buttonContainer} onPress={onBottonForm} >
-        <Text style={styles.buttonText}>Press me</Text>
+          <Text style={styles.buttonText}>Press me</Text>
         </TouchableOpacity>
         <FlatList
           data={ListNotices}
@@ -108,7 +107,7 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontWeight: 'bold',
     fontSize: 15
-  }  
+  }
 });
 
 export default NoticesSchool;
