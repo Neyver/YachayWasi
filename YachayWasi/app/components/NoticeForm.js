@@ -7,7 +7,7 @@ import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-nativ
 import DatePicker from 'react-native-modal-datetime-picker'
 import DropDownPicker from 'react-native-dropdown-picker';
 import Icon from 'react-native-vector-icons/Feather';
-
+import firebaseConfig from '../../utils/firebaseConfig';
 
 
 
@@ -20,15 +20,46 @@ class NoticeForm extends Component{
         description:'',
         date:'',
         visibility:false,
-        countries: ['uk'],
+        student: '',
         teacher:'Docente',
+        studentByID: [] 
+    }
+
+    constructor(props){
+        super(props); 
+        firebaseConfig.auth().onAuthStateChanged(user => {
+            //getUserById(user.uid);
+            this.getStudents(user.id);
+          })
+    }
+
+    conponentDidMount() {
+        firebaseConfig.auth().onAuthStateChanged(user => {
+            getUserById(user.uid);
+            this.getStudents(user.id);
+          })
+    }
+
+    async getStudents(id){
+        let response =  await db.firestore().collection('Estudiante').get();
+        console.log(response);
+        let listStudent = [];
+        response.forEach(document => {
+            let label = document.data().name;
+            let value = document.data().name;
+            let icon = () => <Icon name="plus" size={18} color="#900" />
+            
+            let obj = { label, value, icon}
+            listStudent.push(obj);
+          })
+        this.setState( {studentByID: listStudent} )
     }
 
     onBottomPress = () => {
         let response = db.firestore().collection('Avisos').add({
-            Aviso: this.state.notice,
+            Titulo: this.state.notice,
             Descripcion: this.state.description,
-            Fecha: this.state.date,
+            FechaLimite: this.state.date,
         })
 
     }
@@ -47,6 +78,10 @@ class NoticeForm extends Component{
     }
     openDate=()=>{
         this.setState({visibility:true})
+        /*items={[
+            {label: 'Leonardo', value: 'Leonardo', icon: () => <Icon name="plus" size={18} color="#900" />},
+            {label: 'Cosmefulano', value: 'Cosmefulanito', icon: () => <Icon name="plus" size={18} color="#900" />},
+        ]}*/
     }
 
     render(){
@@ -61,20 +96,12 @@ class NoticeForm extends Component{
                 />
 
                 <DropDownPicker
-                    items={[
-                        {label: 'Leonardo', value: 'uk', icon: () => <Icon name="plus" size={18} color="#900" />},
-                        {label: 'Leonal', value: 'france', icon: () => <Icon name="plus" size={18} color="#900" />},
-                    ]}
-                
-                    multiple={true}
-                    multipleText="%d Selecciona un Estudiante"
-                    min={0}
-                    max={10}
+                    items={this.state.studentByID}
                     style={styles.dropContainer}
-                    defaultValue={this.state.countries}
+                    defaultValue={this.state.student}
                     
                     onChangeItem={item => this.setState({
-                        countries: item // an array of the selected items
+                        student: item.value
                     })}
                     
                 />
