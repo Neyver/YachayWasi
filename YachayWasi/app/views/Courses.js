@@ -12,20 +12,13 @@ import firebaseConfig from '../../utils/firebaseConfig';
 
 const db = firebase.app();
 
-const Courses = (props) => {
-    //console.log(props.route.params.userId)
+const Courses = ({navigation}) => {
     const [Texto1, onChangeText1] = React.useState('');
     useEffect(() => {
       firebaseConfig.auth().onAuthStateChanged(user => {
-        //console.log(user.uid);
         onChangeText1(user.uid)
-        //getDetailsUser()
         getUserById(user.uid)
-        
       })
-      
-     // console.log(db.firestore().collection('Actividades').get())
-    
       
     },[]);
     const [ListCourses, setListCourses] = useState([]);
@@ -37,30 +30,6 @@ const Courses = (props) => {
         photo:'Foto',
     });
 
-    const handleChangeText = (name,value) =>{
-      setUser({...user,[name]: value });
-  }  
-
-    const getDetailsUser = async () => {
-      let list = [];
-      const response = await db.firestore().collection('Usuario').get();
-  
-      response.forEach(document => {
-        let id = document.id
-        let name = document.data().name
-        let email = document.data().email
-        let phone = document.data().phone
-        let obj = { id, name, email, phone }
-        list.push(obj);
-        setUser ({
-            ...user,
-            id: user.ui,          
-        })   
-        console.log(user);
-      })
-      console.log(list)
-
-    }
     const getUserById = async (id) =>{
       let list = []; 
       const response = await db.firestore().collection('Usuario').doc(id);
@@ -89,9 +58,7 @@ const Courses = (props) => {
       
     };
     const createItem = ({ item }) => (
-      <View style={styles.propsbutton}
-
-        >
+      <View style={styles.propsbutton} onStartShouldSetResponder={()=>{navigation.navigate('NotasTeacher', { type: item.nombre, profe: user.name  })}}>
         <Text style={styles.innerText}>{item.nombre}</Text>
       </View>
     );
