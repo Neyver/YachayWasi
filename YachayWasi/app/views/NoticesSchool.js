@@ -28,7 +28,7 @@ const NoticesSchool = ({ navigation }) => {
 
   const onDeleteNotice = (key) => {
     console.log(key, "delete");
-    const response = db.firestore().collection('Avisos').doc(key).delete().then(
+    const response = db.firestore().collection('Aviso').doc(key).delete().then(
       function(){
         console.log("Aviso eliminada correctamente");
         navigation.navigate('NoticesSchool');
@@ -50,18 +50,24 @@ const NoticesSchool = ({ navigation }) => {
   const getActivities = async () => {
     let list = [];
     const response = await db.firestore().collection('Aviso').get();
-
+    console.log(response);
 
     response.forEach(document => {
       let id = document.id
-      let date = document.data().Fecha
+      let date = convertDate(document.data().FechaLimite.toDate())
       let descripcion = document.data().Descripcion
-      let aviso = document.data().Aviso
+      let aviso = document.data().Titulo
       let obj = { id, aviso, descripcion, date }
       list.push(obj);
     })
     setListNotices(list)
   }
+
+  const convertDate = (date) => {
+    var d = date.toString()
+    return d.substr(0, 21);
+  }
+
   const createItem = ({ item }) => {
     
     
