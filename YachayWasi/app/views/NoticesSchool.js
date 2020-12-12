@@ -54,7 +54,7 @@ const NoticesSchool = ({ navigation }) => {
 
     response.forEach(document => {
       let id = document.id
-      let date = convertDate(document.data().FechaLimite.toDate())
+      let date = convertDate(document.data().FechaLimite)
       let descripcion = document.data().Descripcion
       let aviso = document.data().Titulo
       let obj = { id, aviso, descripcion, date }
@@ -64,7 +64,12 @@ const NoticesSchool = ({ navigation }) => {
   }
 
   const convertDate = (date) => {
-    var d = date.toString()
+    if(date == ""){
+      return "Fecha no definida";
+    }
+    let dateLocal; 
+    dateLocal = date.toDate();
+    var d = dateLocal.toString()
     return d.substr(0, 21);
   }
 

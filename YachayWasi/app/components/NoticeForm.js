@@ -13,6 +13,7 @@ import firebaseConfig from '../../utils/firebaseConfig';
 
 const db = firebase.app();
 
+
 class NoticeForm extends Component{
     
     state = {
@@ -21,8 +22,9 @@ class NoticeForm extends Component{
         date:'',
         visibility:false,
         student: '',
-        teacher:'Docente',
-        studentByID: [] 
+        teacher:'',
+        studentByID: [],
+        navigation:''
     }
 
     constructor(props){
@@ -30,6 +32,8 @@ class NoticeForm extends Component{
         firebaseConfig.auth().onAuthStateChanged(user => {
             //getUserById(user.uid);
             this.getStudents(user.id);
+            this.getUserById(user.uid);
+            this.setState({navigation: props});
           })
     }
 
@@ -40,27 +44,48 @@ class NoticeForm extends Component{
           })
     }
 
+    async getUserById(id){
+        let response = await db.firestore().collection('Usuario').doc(id)
+
+        let document = await response.get();
+
+        console.log(document.data().Nombre);
+        this.setState({teacher: document.data().Nombre});
+    }
+
     async getStudents(id){
         let response =  await db.firestore().collection('Estudiante').get();
         console.log(response);
         let listStudent = [];
         response.forEach(document => {
-            let label = document.data().name;
-            let value = document.data().name;
+            let label = document.data().Nombre+" "+document.data().Curso;
+            let value = document.data().Nombre;
             let icon = () => <Icon name="plus" size={18} color="#900" />
             
             let obj = { label, value, icon}
             listStudent.push(obj);
           })
+          console.log(listStudent);
         this.setState( {studentByID: listStudent} )
+
     }
 
     onBottomPress = () => {
-        let response = db.firestore().collection('Avisos').add({
+        db.firestore().collection('Aviso').add({
             Titulo: this.state.notice,
             Descripcion: this.state.description,
             FechaLimite: this.state.date,
-        })
+            Receptor: this.state.student,
+            ProfesorEmisor: this.state.teacher,
+            TipoEnvio: 'Privado'
+        }).
+        then(function(docRef){
+            console.log("Se agregó correctamente");
+            //this.state.navigation.navigate('NoticesSchool');
+        }).
+        catch(function(error){
+            console.error("ocurrió un error");
+        });
 
     }
 
@@ -96,7 +121,7 @@ class NoticeForm extends Component{
                 />
 
                 <DropDownPicker
-                    items={this.state.studentByID}
+                    items={ this.state.studentByID }
                     style={styles.dropContainer}
                     defaultValue={this.state.student}
                     
@@ -116,9 +141,7 @@ class NoticeForm extends Component{
                     onChangeText={description => this.setState({description})}
                     
                 />
-                <TouchableOpacity style={styles.buttonDateContainer} onPress={this.openDate}>
-                    <Text> Fecha </Text>
-                </TouchableOpacity>
+                
 
                 <TouchableOpacity style={styles.buttonContainer} onPress={this.onBottomPress} >
                     <Text style={styles.buttonText}>Agragar Aviso</Text>
