@@ -29,8 +29,24 @@ const NotasTeacher = ({ navigation }) => {
     onChangeArray(aux);
   };
 
+  const press = (object, value) => {
+    object[Type] = value;
+    updateCalificaciones(object);
+  };
+
+  const updateCalificaciones = async (object) => {
+    const response = await db.firestore().collection('Calificacion')
+      .where('Curso', '==', object.Curso)
+      .where('Estudiante', '==', object.Estudiante)
+      .where('Profesor', '==', object.Profesor)
+      .get();
+    response.forEach(document => {
+      db.firestore().collection('Calificacion').doc(document.id).update(object);
+    })
+  };
+
   const items = array.map((option, key) => {
-    return <ItemNotas key={key} name={option.Estudiante} nota={option[Type]} disabled={false} />
+    return <ItemNotas key={key} name={option.Estudiante} nota={option[Type]} onclick={press} object={option} />
   });
 
   return (

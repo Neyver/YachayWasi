@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { View, Text, StyleSheet, Button, TextInput } from 'react-native'
 import * as firebase from 'firebase/app';
 import 'firebase/firestore';
-import Form_teacher from '../components/teacher_form'
 import Avatar from '../components/avatar';
 
 import firebaseConfig from '../../utils/firebaseConfig';
@@ -14,12 +13,10 @@ const UserDetailScreen = (props) => {
   useEffect(() => {
     firebaseConfig.auth().onAuthStateChanged(user => {
       onChangeText1(user.uid)
-      //getDetailsUser()
       getUserById(user.uid)
-
     })
-
   }, []);
+
   const [user, setUser] = useState({
     id: 'Aqui tiene el ide',
     name: 'Aqui otra cosa',
@@ -32,23 +29,6 @@ const UserDetailScreen = (props) => {
     setUser({ ...user, [name]: value });
   }
 
-  const getDetailsUser = async () => {
-    let list = [];
-    const response = await db.firestore().collection('users').get();
-
-    response.forEach(document => {
-      let id = document.id
-      let name = document.data().name
-      let email = document.data().email
-      let phone = document.data().phone
-      let obj = { id, name, email, phone }
-      list.push(obj);
-      setUser({
-        ...user,
-        id: user.ui,
-      })
-    })
-  }
   const getUserById = async (id) => {
 
     const response = await db.firestore().collection('Usuario').doc(id);
