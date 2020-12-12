@@ -11,11 +11,13 @@ const HomeStudent = ({ navigation }) => {
   const [user1, onChangeText1] = React.useState('hola');
 
   useEffect(() => {
-    //firebaseConfig.auth().onAuthStateChanged(user => {
-    //console.log(user);
-    // onChangeText1(user.uid)
+    console.log('funca')
+    firebaseConfig.auth().onAuthStateChanged(user => {
+    
+     onChangeText1(user)
+     console.log(user1);
 
-    //})
+    })
   });
 
   const irdetalles = () => {
@@ -28,7 +30,10 @@ const HomeStudent = ({ navigation }) => {
     [
       {
         action: () => {
-          navigation.navigate('MyScore');
+          console.log()
+          navigation.navigate('MyScore',{
+            userUID: user1.uid  
+          });
         },
         name: "Mis Notas",
         uriIcon: 'https://www.esfmjuanmisaelsaracho.edu.bo/images/especialidad.png',
