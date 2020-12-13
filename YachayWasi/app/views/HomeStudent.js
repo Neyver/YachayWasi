@@ -4,14 +4,14 @@ import CustomButton from "../components/CustomButton";
 
 import React, { useState, useEffect } from 'react';
 import 'firebase/firestore';
-
+import * as firebase from 'firebase/app';
+const db = firebase.app();
 import firebaseConfig from '../../utils/firebaseConfig';
 const HomeStudent = ({ navigation }) => {
 
   const [user1, onChangeText1] = React.useState('hola');
 
   useEffect(() => {
-    console.log('funca')
     firebaseConfig.auth().onAuthStateChanged(user => {
     
      onChangeText1(user)
@@ -29,10 +29,14 @@ const HomeStudent = ({ navigation }) => {
   const options =
     [
       {
-        action: () => {
+        action: async () => {
           console.log()
+          const response = await db.firestore().collection('Usuario').doc(user1.uid);
+          const documento = await response.get();
+          const usuario = documento.data(); 
+
           navigation.navigate('MyScore',{
-            userUID: user1.uid  
+            userName: usuario.Nombre,
           });
         },
         name: "Mis Notas",
