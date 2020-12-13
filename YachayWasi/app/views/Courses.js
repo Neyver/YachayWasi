@@ -44,7 +44,7 @@ const Courses = (props) => {
     const getDetailsUser = async () => {
       let list = [];
       const response = await db.firestore().collection('Usuario').get();
-  
+      
       response.forEach(document => {
         let id = document.id
         let name = document.data().name
@@ -66,11 +66,14 @@ const Courses = (props) => {
       const response = await db.firestore().collection('Usuario').doc(id);
       const documento = await response.get();
       const usuario = documento.data();
-      const cursos = await db.firestore().collection('Usuario').doc(id).collection('courses').get();
-     
+      //const cursos = await db.firestore().collection('Usuario').doc(id).collection('courses').get();
+     // const cursos = await db.firestore().collection('Usuario').doc(id).collection('courses').get();
+     console.log(user.name);
+     const cursos = await db.firestore().collection('Profesor').where("Nombre","==",usuario.Nombre).get();
+     //const response = await db.firestore().collection('Calificacion').where("Estudiante","==",navigation.state.params.userName).get();
      cursos.forEach(curso =>{
        let id =curso.id
-       let nombre = curso.data().name
+       let nombre = curso.data().Curso
        let obj = {id, nombre}
        list.push(obj)
      })
