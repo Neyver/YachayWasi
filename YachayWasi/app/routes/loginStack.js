@@ -22,6 +22,20 @@ const views = {
       },
     }),
   },
+  // MyScore: {
+  //   screen: MyScore,
+  //   navigationOptions: ({ navigation }) => ({
+  //     title: "Mis calificaciones",
+  //     headerStyle: {
+  //       backgroundColor: '#475B6F',
+  //     },
+  //     headerTintColor: '#fff',
+  //     headerTitleStyle: {
+  //       alignSelf: 'center',
+  //       fontWeight: 'bold',
+  //     },
+  //   }),
+  // },
   EmailAndPassword: {
     screen: EmailAndPassword,
     navigationOptions: ({ navigation }) => ({

@@ -4,18 +4,20 @@ import CustomButton from "../components/CustomButton";
 
 import React, { useState, useEffect } from 'react';
 import 'firebase/firestore';
-
+import * as firebase from 'firebase/app';
+const db = firebase.app();
 import firebaseConfig from '../../utils/firebaseConfig';
 const HomeStudent = ({ navigation }) => {
 
   const [user1, onChangeText1] = React.useState('hola');
 
   useEffect(() => {
-    //firebaseConfig.auth().onAuthStateChanged(user => {
-    //console.log(user);
-    // onChangeText1(user.uid)
+    firebaseConfig.auth().onAuthStateChanged(user => {
+    
+     onChangeText1(user)
+     console.log(user1);
 
-    //})
+    })
   });
 
   const irdetalles = () => {
@@ -27,8 +29,15 @@ const HomeStudent = ({ navigation }) => {
   const options =
     [
       {
-        action: () => {
-          navigation.navigate('MyScore');
+        action: async () => {
+          console.log()
+          const response = await db.firestore().collection('Usuario').doc(user1.uid);
+          const documento = await response.get();
+          const usuario = documento.data(); 
+
+          navigation.navigate('MyScore',{
+            userName: usuario.Nombre,
+          });
         },
         name: "Mis Notas",
         uriIcon: 'https://www.esfmjuanmisaelsaracho.edu.bo/images/especialidad.png',

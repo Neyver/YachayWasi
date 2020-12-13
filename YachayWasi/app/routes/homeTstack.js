@@ -13,7 +13,7 @@ import firebaseConfig from '../../utils/firebaseConfig';
 import CreateNotice from '../views/CreateNotice';
 import UserDetailScreen from '../views/UserDetailScreen';
 import Login from '../components/login';
-//import Avatar from '../components/avatar'
+import NotasTeacher from '../views/NotasTeacher';
 
 const views = {
   HomeTeacher: {
@@ -89,13 +89,13 @@ const views = {
   },
   CreateNotice: {
     screen: CreateNotice,
-    navigationOptions: ({navigation}) => ({
+    navigationOptions: ({ navigation }) => ({
       title: "Agregar Avisos"
     }),
   },
   login: {
     screen: Login,
-    navigationOptions: ({navigation}) => ({
+    navigationOptions: ({ navigation }) => ({
       title: "Iniciar Sesipon"
     }),
   },
@@ -132,6 +132,20 @@ const views = {
     screen: Cursos,
     navigationOptions: ({ navigation }) => ({
       title: "Cursos",
+      headerStyle: {
+        backgroundColor: '#475B6F',
+      },
+      headerTintColor: '#fff',
+      headerTitleStyle: {
+        alignSelf: 'center',
+        fontWeight: 'bold',
+      },
+    }),
+  },
+  NotasTeacher: {
+    screen: NotasTeacher,
+    navigationOptions: ({ navigation }) => ({
+      title: "Detalle de Notas",
       headerStyle: {
         backgroundColor: '#475B6F',
       },
