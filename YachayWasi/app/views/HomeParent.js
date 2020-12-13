@@ -7,38 +7,60 @@ import React, { useState, useEffect } from 'react';
 import * as firebase from 'firebase/app';
 import 'firebase/firestore';
 import { FlatList } from 'react-native-gesture-handler';
+import firebaseConfig from '../../utils/firebaseConfig';
 
 const db = firebase.app();
-const HomeParent = ({ navigation, user1 }) => {
+const HomeParent = ({ navigation}) => {
+  const [name, onChangeName] = useState('');
   const [ListMaterias, setListMaterias] = useState([])
-
+  
   useEffect(() => {
-    getMaterias();
-  }, [])
+    firebaseConfig.auth().onAuthStateChanged(user => {
+      getUserById(user.uid);
+      getHijos(user.uid);
+    })
+  }, []);
+  const getUserById = async (id) => {
+    const response = await db.firestore().collection('Usuario').doc(id);
+    const documento = await response.get();
+    const usuario = documento.data();
+    onChangeName(usuario.Nombre);
+    console.log(name)
+  };
 
-  const getMaterias = async () => {
+
+  const getHijos = async (id) => {
     let list = [];
-    const response = await db.firestore().collection('Estudiante').where("Tutor","==","Manuel Perez Rocha").get();
+    console.log(name)
+    console.log("why?")
+    const response = await db.firestore().collection('Estudiante').where("Tutor","==",id).get();
 
     response.forEach(document => {
       let id = document.id
       let curso = document.data().Curso
       let nombre = document.data().Nombre
       let tutor = document.data().Tutor
-      let obj = { id, nombre, tutor, curso, curso, curso, curso}
+      let action = async () => {
+        // const response = await db.firestore().collection('Usuario').doc(id);
+        // const documento = await response.get();
+        // const usuario = documento.data(); 
+        navigation.navigate('MyScore',{
+          userName: nombre,
+        });
+      }
+      let obj = { id, nombre, tutor, curso, action}
       list.push(obj);
     })
     setListMaterias(list)
   }
+  const uriIcon = 'https://www.esfmjuanmisaelsaracho.edu.bo/images/especialidad.png'
   const createItem = ({ item }) => (
-    <CalificacionCard
-      Materia={item.nombre}
-      Profesor={item.tutor}
-      PBimestre={item.curso}
-      SBimestre={item.curso}
-      TBimestre={item.curso}
-      CBimestre={item.curso}
-    />
+    <CustomButton
+        icon={uriIcon}
+        name={item.nombre}
+        action={item.action}
+        key={uriIcon}
+      />
   );
 
   return (
