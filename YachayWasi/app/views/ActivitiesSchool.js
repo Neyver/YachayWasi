@@ -17,7 +17,6 @@ const ActivitiesSchool = ({ navigation }) => {
   const getActivities = async () => {
     let list = [];
     const response = await db.firestore().collection('Actividad').get();
-    
     response.forEach(document => {
       let id = document.id
       let date =   convertDate(document.data().FechaLimite.toDate())
