@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { View, Text, StyleSheet, Button, TextInput } from 'react-native'
+import { View, Text, StyleSheet, Button, TextInput, RefreshControl } from 'react-native'
 import * as firebase from 'firebase/app';
 import 'firebase/firestore';
 import Avatar from '../components/avatar';
@@ -16,14 +16,18 @@ const UserDetailScreen = (props) => {
       getUserById(user.uid)
     })
   }, []);
-
-  const [user, setUser] = useState({
-    id: 'Aqui tiene el ide',
-    name: 'Aqui otra cosa',
-    email: 'fsdafa',
-    phone: 'fsadf',
-    photo: 'fdf',
-  })
+  const initialState ={
+    
+      id: '',
+      name: '',
+      email: '',
+      phone: '',
+      photo: '',
+      rol:'',
+      password:''
+    
+  }
+  const [user, setUser] = useState(initialState)
 
   const handleChangeText = (name, value) => {
     setUser({ ...user, [name]: value });
@@ -37,18 +41,41 @@ const UserDetailScreen = (props) => {
 
     setUser({
       ...user,
-      id: Texto1,
+      id: documento.id,
       email: usuario.Correo,
       name: usuario.Nombre,
       phone: usuario.Telefono,
-      photo: usuario.Foto
+      photo: usuario.Foto,
+      rol:usuario.Rol,
+      password:usuario.Contraseña
     })
 
   };
+   
+  const updateUser = async () => {
+    
+    const response = await db.firestore().collection('Usuario').doc(user.id);
+    const documento = await response.get();
+    const usuario = documento.data();
+    await response.set({
+      //name: user.name,
+      //email: user.email,
+      Nombre: user.name,
+      Correo: user.email,
+      Telefono: user.phone,
+      Foto: usuario.Foto,
+      Rol: usuario.Rol,
+      Contraseña: usuario.Contraseña
+    });
+  };
+
 
   const hm = () => {
     console.log(Texto1);
   }
+
+  
+
   const [disable_text, edit] = React.useState(false);
   return (
 
@@ -94,7 +121,7 @@ const UserDetailScreen = (props) => {
             </TextInput>
           </View>
           <View style={{ marginTop: 10, }}>
-            <Button title="GUARDAR" color="rgba(91,132,168,100)"></Button>
+            <Button title="GUARDAR" color="rgba(91,132,168,100)" onPress={() => updateUser()}></Button>
           </View>
         </View>
       </View>

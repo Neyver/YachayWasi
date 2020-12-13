@@ -31,11 +31,11 @@ const Courses = ({ navigation }) => {
     const response = await db.firestore().collection('Usuario').doc(id);
     const documento = await response.get();
     const usuario = documento.data();
-    const cursos = await db.firestore().collection('Usuario').doc(id).collection('courses').get();
-
+    //const cursos = await db.firestore().collection('Usuario').doc(id).collection('courses').get();
+    const cursos = await db.firestore().collection('Profesor').where("Nombre","==",usuario.Nombre).get();
     cursos.forEach(curso => {
       let id = curso.id
-      let nombre = curso.data().name
+      let nombre = curso.data().Curso
       let obj = { id, nombre }
       list.push(obj)
     })
