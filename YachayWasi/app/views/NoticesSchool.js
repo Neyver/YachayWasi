@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { View, StyleSheet, TouchableOpacity, Text } from 'react-native';
-import Card from '../components/card';
+import NoticeCard from '../components/NoticeCard';
 import * as firebase from 'firebase/app';
 import 'firebase/firestore';
 import { FlatList } from 'react-native-gesture-handler';
-import NoticeFrom from "../components/NoticeForm";
 import { render } from 'react-dom';
 import Icon from 'react-native-vector-icons/Feather';
 
@@ -31,7 +30,7 @@ const NoticesSchool = ({ navigation }) => {
     const response = db.firestore().collection('Aviso').doc(key).delete().then(
       function(){
         console.log("Aviso eliminada correctamente");
-        navigation.navigate('NoticesSchool');
+        //navigation.navigate('NoticesSchool');
       }
     ).catch(
       function(error){
@@ -85,13 +84,14 @@ const NoticesSchool = ({ navigation }) => {
           >
             <TouchableOpacity style={styles.buttonDelete} onPress={()=>onDeleteNotice(item.id)} >
                 <Icon name="delete" size={18} color="#ffff" />
-          </TouchableOpacity>
-          <Card
-          Title={item.aviso}
-          Contenido={item.descripcion}
-          Date={item.date + ""}
-          >
-          </Card>
+            </TouchableOpacity>
+            <NoticeCard
+            Title={item.aviso}
+            Contenido={item.descripcion}
+            Date={item.date + ""}
+            />
+            
+            
         </TouchableOpacity>
         
       </View>
@@ -152,7 +152,7 @@ const styles = StyleSheet.create({
     padding: 5,
     borderRadius: 20,
     width: 50,
-    marginLeft: 15
+    marginLeft: 10,
   }
 });
 

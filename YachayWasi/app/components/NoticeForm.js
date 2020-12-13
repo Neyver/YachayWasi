@@ -4,7 +4,8 @@ import * as firebase from 'firebase/app';
 //import 'firebase/firestore';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 //import Textarea from 'react-native-textarea';
-import DatePicker from 'react-native-modal-datetime-picker'
+//import DatePicker from 'react-native-modal-datetime-picker'
+//import DatePicker from 'react-native-datepicker'
 import DropDownPicker from 'react-native-dropdown-picker';
 import Icon from 'react-native-vector-icons/Feather';
 import firebaseConfig from '../../utils/firebaseConfig';
@@ -142,7 +143,31 @@ class NoticeForm extends Component{
                     
                 />
                 
-
+                {/*<DatePicker
+                    style={{width: 200}}
+                    date={this.state.date}
+                    mode="date"
+                    placeholder="select date"
+                    format="YYYY-MM-DD"
+                    minDate="2016-05-01"
+                    maxDate="2016-06-01"
+                    confirmBtnText="Confirm"
+                    cancelBtnText="Cancel"
+                    customStyles={{
+                      dateIcon: {
+                        position: 'absolute',
+                        left: 0,
+                        top: 4,
+                        marginLeft: 0
+                      },
+                      dateInput: {
+                        marginLeft: 36
+                      }
+                      // ... You can check the source to find the other keys.
+                    }}
+                    onDateChange={(date) => {this.setState({date: date})}}
+                />*/}
+                
                 <TouchableOpacity style={styles.buttonContainer} onPress={this.onBottomPress} >
                     <Text style={styles.buttonText}>Agragar Aviso</Text>
                 </TouchableOpacity>
