@@ -8,6 +8,7 @@ import EmailAndPassword from '../components/EmailAndPassword';
 import ActivitiesSchool from '../views/ActivitiesSchool';
 import firebaseConfig from '../../utils/firebaseConfig';
 import UserDetailScreen from '../views/UserDetailScreen';
+import MyScore from '../views/myScore';
 
 //import Avatar from '../components/avatar'
 
@@ -77,6 +78,20 @@ const views = {
     }),
 
   },
+  MyScore: {
+    screen: MyScore,
+    navigationOptions: ({ navigation }) => ({
+      title: "Mis calificaciones",
+      headerStyle: {
+        backgroundColor: '#475B6F',
+      },
+      headerTintColor: '#fff',
+      headerTitleStyle: {
+        alignSelf: 'center',
+        fontWeight: 'bold',
+      },
+    }),
+  },  
   UserDetailScreen: {
     screen: UserDetailScreen,
     navigationOptions: ({ navigation }) => ({
