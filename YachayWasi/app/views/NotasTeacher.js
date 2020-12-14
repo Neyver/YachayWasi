@@ -8,7 +8,7 @@ const db = firebase.app();
 
 const NotasTeacher = ({ navigation }) => {
   const [array, onChangeArray] = useState([]);
-  const [Type, onChangeType] = useState('CB');
+  const [Type, onChangeType] = useState('CBimestre');
 
   const curso = navigation.state.params.type;
   const name1 = navigation.state.params.profe;
@@ -59,25 +59,25 @@ const NotasTeacher = ({ navigation }) => {
 
         <TouchableOpacity
           style={styles.button}
-          onPress={() => { onPress("PB") }}
+          onPress={() => { onPress("PBimestre") }}
         >
           <Text>PB</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.button}
-          onPress={() => { onPress("SB") }}
+          onPress={() => { onPress("SBimestre") }}
         >
           <Text>SB</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.button}
-          onPress={() => { onPress("TB") }}
+          onPress={() => { onPress("TBimestre") }}
         >
           <Text>TB</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.button}
-          onPress={() => { onPress("CB") }}
+          onPress={() => { onPress("CBimestre") }}
         >
           <Text>CB</Text>
         </TouchableOpacity>

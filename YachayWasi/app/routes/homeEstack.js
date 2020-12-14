@@ -10,8 +10,8 @@ import firebaseConfig from '../../utils/firebaseConfig';
 import UserDetailScreen from '../views/UserDetailScreen';
 import MyScore from '../views/myScore';
 import Prueba from '../views/Prueba';
-//import Avatar from '../components/avatar'
-
+import HorarioEstudent from '../views/HorariosStudent';
+import AvisosStudent from '../views/NoticesSchoolEstudent';
 
 const views = {
   HomeStudent: {
@@ -120,7 +120,34 @@ const views = {
       },
     }),
   },
-
+  HorarioEstudent: {
+    screen: HorarioEstudent,
+    navigationOptions: ({ navigation }) => ({
+      title: "Mi horario",
+      headerStyle: {
+        backgroundColor: '#475B6F',
+      },
+      headerTintColor: '#fff',
+      headerTitleStyle: {
+        alignSelf: 'center',
+        fontWeight: 'bold',
+      },
+    }),
+  },
+  AvisosStudent: {
+    screen: AvisosStudent,
+    navigationOptions: ({ navigation }) => ({
+      title: "Mis Avisos",
+      headerStyle: {
+        backgroundColor: '#475B6F',
+      },
+      headerTintColor: '#fff',
+      headerTitleStyle: {
+        alignSelf: 'center',
+        fontWeight: 'bold',
+      },
+    }),
+  },
 }
 
 const HomeEstack = createStackNavigator(views);
