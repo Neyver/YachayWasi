@@ -25,14 +25,11 @@ const HomeParent = ({ navigation}) => {
     const documento = await response.get();
     const usuario = documento.data();
     onChangeName(usuario.Nombre);
-    console.log(name)
   };
 
 
   const getHijos = async (id) => {
     let list = [];
-    console.log(name)
-    console.log("why?")
     const response = await db.firestore().collection('Estudiante').where("Tutor","==",id).get();
 
     response.forEach(document => {

@@ -1,41 +1,33 @@
-
-import { View, StyleSheet, Text, Button, ImagePropTypes } from 'react-native';
-import CustomButton from "../components/CustomButton";
-
 import React, { useState, useEffect } from 'react';
+import { View, StyleSheet, Text } from 'react-native';
 import 'firebase/firestore';
 import * as firebase from 'firebase/app';
-const db = firebase.app();
-import firebaseConfig from '../../utils/firebaseConfig';
-const HomeStudent = ({ navigation }) => {
 
-  const [user1, onChangeText1] = React.useState('hola');
+import firebaseConfig from '../../utils/firebaseConfig';
+import CustomButton from "../components/CustomButton";
+const db = firebase.app();
+
+const HomeStudent = ({ navigation }) => {
+  const [usuario, onChangeUsuario] = useState({});
 
   useEffect(() => {
     firebaseConfig.auth().onAuthStateChanged(user => {
-    
-     onChangeText1(user)
-     console.log(user1);
-
+      getUsuario(user.uid);
     })
-  });
+  }, []);
 
-  const irdetalles = () => {
-    console.log('AAAAAAAAA')
-    navigation.navigate('Prueba1', { user: "XD" });
-    //console.log(navigation,user)
+  const getUsuario = async (uid) => {
+    const response = await db.firestore().collection('Usuario').doc(uid);
+    const documento = await response.get();
+    const usuario = documento.data();
+    onChangeUsuario(usuario);
   }
 
   const options =
     [
       {
         action: async () => {
-          console.log()
-          const response = await db.firestore().collection('Usuario').doc(user1.uid);
-          const documento = await response.get();
-          const usuario = documento.data(); 
-
-          navigation.navigate('MyScore',{
+          navigation.navigate('MyScore', {
             userName: usuario.Nombre,
           });
         },
@@ -45,7 +37,9 @@ const HomeStudent = ({ navigation }) => {
       },
       {
         action: () => {
-          navigation.navigate('Schedule');
+          navigation.navigate('HorarioEstudent', {
+            userName: usuario.Nombre,
+          });
         },
         name: "Horario",
         uriIcon: 'https://image.flaticon.com/icons/png/512/376/376853.png',
@@ -60,7 +54,11 @@ const HomeStudent = ({ navigation }) => {
         color: "#5976b3"
       },
       {
-        action: () => { },
+        action: () => {
+          navigation.navigate('AvisosStudent', {
+            userName: usuario.Nombre,
+          });
+        },
         name: "Avisos",
         uriIcon: 'https://images.vexels.com/media/users/3/157272/isolated/preview/e6d8b2a22f0f860af01343af96e94a8a-libros-apilados-vector-by-vexels.png',
         color: "red"
@@ -82,7 +80,6 @@ const HomeStudent = ({ navigation }) => {
   return (
     <View style={styles.containerHome}>
       <View style={styles.containerWelcom}>
-        
         <Text style={styles.textWelcom}>Bienvenido</Text>
       </View>
       <View style={styles.containerHome}>

@@ -13,11 +13,10 @@ const MyScore = ({ navigation }) => {
   useEffect(() => {
     onChangenameUser(navigation.state.params.userName)
     // getUserById(navigation.state.params.userName)
-    console.log(nameUser)
     getMaterias();
-    
+
   }, [])
-  
+
   // const getUserById = async (id) => {
   //   // const response = await db.firestore().collection('Usuario').doc(id);
   //     // const documento = await response.get();
@@ -25,28 +24,28 @@ const MyScore = ({ navigation }) => {
   //     onChangenameUser(id);
   //     console.log(nameUser)
   // };
-    
-    
-    
-    const getMaterias = async () => {
-      let list = [];
-      const response = await db.firestore().collection('Calificacion').where("Estudiante","==",navigation.state.params.userName).get();
 
-      response.forEach(document => {
-        let id = document.id
-        let pBimestre = document.data().PBimestre
-        let sBimestre = document.data().SBimestre
-        let tBimestre = document.data().TBimestre
-        let cBimestre = document.data().CBimestre
-        let materia = document.data().Materia
-        let profesor = document.data().Profesor
-        let obj = { id, materia, profesor, pBimestre, sBimestre, tBimestre, cBimestre}
-        list.push(obj);
-      })
-      setListMaterias(list)
-    }
-    const createItem = ({ item }) => (
-      <CalificacionCard
+
+
+  const getMaterias = async () => {
+    let list = [];
+    const response = await db.firestore().collection('Calificacion').where("Estudiante", "==", navigation.state.params.userName).get();
+
+    response.forEach(document => {
+      let id = document.id
+      let pBimestre = document.data().PBimestre
+      let sBimestre = document.data().SBimestre
+      let tBimestre = document.data().TBimestre
+      let cBimestre = document.data().CBimestre
+      let materia = document.data().Materia
+      let profesor = document.data().Profesor
+      let obj = { id, materia, profesor, pBimestre, sBimestre, tBimestre, cBimestre }
+      list.push(obj);
+    })
+    setListMaterias(list)
+  }
+  const createItem = ({ item }) => (
+    <CalificacionCard
       Materia={item.materia}
       Profesor={item.profesor}
       PBimestre={item.pBimestre}
@@ -79,7 +78,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: "stretch",
     padding: 10,
-    },
+  },
 });
 
 export default MyScore;

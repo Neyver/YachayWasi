@@ -15,135 +15,128 @@ import firebaseConfig from '../../utils/firebaseConfig';
 const db = firebase.app();
 
 
-class NoticeForm extends Component{
-    
-    state = {
-        notice:'',
-        description:'',
-        date:'',
-        visibility:false,
-        student: '',
-        teacher:'',
-        studentByID: [],
-        navigation:''
-    }
+class NoticeForm extends Component {
 
-    constructor(props){
-        super(props); 
-        firebaseConfig.auth().onAuthStateChanged(user => {
-            //getUserById(user.uid);
-            this.getStudents(user.id);
-            this.getUserById(user.uid);
-            this.setState({navigation: props});
-          })
-    }
+  state = {
+    notice: '',
+    description: '',
+    date: '',
+    visibility: false,
+    student: '',
+    teacher: '',
+    studentByID: [],
+    navigation: ''
+  }
 
-    conponentDidMount() {
-        firebaseConfig.auth().onAuthStateChanged(user => {
-            getUserById(user.uid);
-            this.getStudents(user.id);
-          })
-    }
+  constructor(props) {
+    super(props);
+    firebaseConfig.auth().onAuthStateChanged(user => {
+      this.getStudents(user.id);
+      this.getUserById(user.uid);
+      this.setState({ navigation: props });
+    })
+  }
 
-    async getUserById(id){
-        let response = await db.firestore().collection('Usuario').doc(id)
+  conponentDidMount() {
+    firebaseConfig.auth().onAuthStateChanged(user => {
+      getUserById(user.uid);
+      this.getStudents(user.id);
+    })
+  }
 
-        let document = await response.get();
+  async getUserById(id) {
+    let response = await db.firestore().collection('Usuario').doc(id)
+    let document = await response.get();
+    this.setState({ teacher: document.data().Nombre });
+  }
 
-        console.log(document.data().Nombre);
-        this.setState({teacher: document.data().Nombre});
-    }
+  async getStudents(id) {
+    let response = await db.firestore().collection('Estudiante').get();
+    let listStudent = [];
+    response.forEach(document => {
+      let label = document.data().Nombre + " " + document.data().Curso;
+      let value = document.data().Nombre;
+      let icon = () => <Icon name="plus" size={18} color="#900" />
 
-    async getStudents(id){
-        let response =  await db.firestore().collection('Estudiante').get();
-        console.log(response);
-        let listStudent = [];
-        response.forEach(document => {
-            let label = document.data().Nombre+" "+document.data().Curso;
-            let value = document.data().Nombre;
-            let icon = () => <Icon name="plus" size={18} color="#900" />
-            
-            let obj = { label, value, icon}
-            listStudent.push(obj);
-          })
-          console.log(listStudent);
-        this.setState( {studentByID: listStudent} )
+      let obj = { label, value, icon }
+      listStudent.push(obj);
+    })
+    this.setState({ studentByID: listStudent })
+  }
 
-    }
+  onBottomPress = () => {
+    db.firestore().collection('Aviso').add({
+      Titulo: this.state.notice,
+      Descripcion: this.state.description,
+      FechaLimite: this.state.date,
+      Receptor: this.state.student,
+      ProfesorEmisor: this.state.teacher,
+      TipoEnvio: 'Privado'
+    }).
+      then(function (docRef) {
+        console.log("Se agregó correctamente");
+        //this.state.navigation.navigate('NoticesSchool');
+      }).
+      catch(function (error) {
+        console.error("ocurrió un error");
+      });
 
-    onBottomPress = () => {
-        db.firestore().collection('Aviso').add({
-            Titulo: this.state.notice,
-            Descripcion: this.state.description,
-            FechaLimite: this.state.date,
-            Receptor: this.state.student,
-            ProfesorEmisor: this.state.teacher,
-            TipoEnvio: 'Privado'
-        }).
-        then(function(docRef){
-            console.log("Se agregó correctamente");
-            //this.state.navigation.navigate('NoticesSchool');
-        }).
-        catch(function(error){
-            console.error("ocurrió un error");
-        });
+  }
 
-    }
+  /*onUpdatePress = (index) => {
+      document.getElementById('tittle').value = "Actualizado";
+      document.getElementById("description").value = "Description";
+  }*/
 
-    /*onUpdatePress = (index) => {
-        document.getElementById('tittle').value = "Actualizado";
-        document.getElementById("description").value = "Description";
-    }*/
-    
-    handleConfirm=(date)=>{
-        this.setState({date:date})
-    }
+  handleConfirm = (date) => {
+    this.setState({ date: date })
+  }
 
-    onPressCancel=()=>{
-        this.setState({visibility:false})
-    }
-    openDate=()=>{
-        this.setState({visibility:true})
-        /*items={[
-            {label: 'Leonardo', value: 'Leonardo', icon: () => <Icon name="plus" size={18} color="#900" />},
-            {label: 'Cosmefulano', value: 'Cosmefulanito', icon: () => <Icon name="plus" size={18} color="#900" />},
-        ]}*/
-    }
+  onPressCancel = () => {
+    this.setState({ visibility: false })
+  }
+  openDate = () => {
+    this.setState({ visibility: true })
+    /*items={[
+        {label: 'Leonardo', value: 'Leonardo', icon: () => <Icon name="plus" size={18} color="#900" />},
+        {label: 'Cosmefulano', value: 'Cosmefulanito', icon: () => <Icon name="plus" size={18} color="#900" />},
+    ]}*/
+  }
 
-    render(){
-        return (
-            <View style={styles.container} >
-                <TextInput
-                    title = "title"
-                    placeholder="Título"
-                    value={this.state.notice}
-                    style={styles.input}
-                    onChangeText={notice => this.setState({notice})} 
-                />
+  render() {
+    return (
+      <View style={styles.container} >
+        <TextInput
+          title="title"
+          placeholder="Título"
+          value={this.state.notice}
+          style={styles.input}
+          onChangeText={notice => this.setState({ notice })}
+        />
 
-                <DropDownPicker
-                    items={ this.state.studentByID }
-                    style={styles.dropContainer}
-                    defaultValue={this.state.student}
-                    
-                    onChangeItem={item => this.setState({
-                        student: item.value
-                    })}
-                    
-                />
+        <DropDownPicker
+          items={this.state.studentByID}
+          style={styles.dropContainer}
+          defaultValue={this.state.student}
 
-                <TextInput
-                    title = "description"
-                    placeholder={'Descripción. . . '}
-                    multiline={true}
-                    numberOfLines={25}
-                    maxLength={500}
-                    style={styles.textarea}
-                    onChangeText={description => this.setState({description})}
-                    
-                />
-                
-                {/*<DatePicker
+          onChangeItem={item => this.setState({
+            student: item.value
+          })}
+
+        />
+
+        <TextInput
+          title="description"
+          placeholder={'Descripción. . . '}
+          multiline={true}
+          numberOfLines={25}
+          maxLength={500}
+          style={styles.textarea}
+          onChangeText={description => this.setState({ description })}
+
+        />
+
+        {/*<DatePicker
                     style={{width: 200}}
                     date={this.state.date}
                     mode="date"
@@ -167,64 +160,64 @@ class NoticeForm extends Component{
                     }}
                     onDateChange={(date) => {this.setState({date: date})}}
                 />*/}
-                
-                <TouchableOpacity style={styles.buttonContainer} onPress={this.onBottomPress} >
-                    <Text style={styles.buttonText}>Agragar Aviso</Text>
-                </TouchableOpacity>
 
-            </View>
-        );
-    }
+        <TouchableOpacity style={styles.buttonContainer} onPress={this.onBottomPress} >
+          <Text style={styles.buttonText}>Agragar Aviso</Text>
+        </TouchableOpacity>
+
+      </View>
+    );
+  }
 
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        padding: 20
-    },
-    input: {
-        height: 40,
-        backgroundColor: 'rgba(255,255,255,.5)',
-        paddingLeft: 10,
-        marginBottom: 15,
-        borderRadius: 5,
-        fontSize: 15,
-    },
-    textarea: {
-        textAlignVertical: 'top',  // hack android
-        height: 190,
-        fontSize: 14,
-        color: '#333',
-        backgroundColor: 'rgba(255,255,255,.5)',
-        paddingLeft: 10,
-        paddingTop: 10,
-        marginBottom: 15,
-      },
-    buttonText: {
-        textAlign: 'center',
-        color: '#fff',
-        fontWeight: 'bold',
-        fontSize: 15
-    },
-    buttonContainer: {
-        backgroundColor: '#3B3B98',
-        padding: 10,
-        borderRadius: 8
-    },
-    buttonDateContainer: {
-        backgroundColor: 'rgba(255,255,255,.5)',
-        marginBottom: 15,
-        width: 70
-    },
-    dropContainer: {
-        backgroundColor: 'rgba(255,255,255,.5)',
-        marginBottom: 15,
-        borderRadius: 8,
-        height: 40,
-        fontSize: 15,
-        paddingLeft: 10,
-    }
+  container: {
+    flex: 1,
+    padding: 20
+  },
+  input: {
+    height: 40,
+    backgroundColor: 'rgba(255,255,255,.5)',
+    paddingLeft: 10,
+    marginBottom: 15,
+    borderRadius: 5,
+    fontSize: 15,
+  },
+  textarea: {
+    textAlignVertical: 'top',  // hack android
+    height: 190,
+    fontSize: 14,
+    color: '#333',
+    backgroundColor: 'rgba(255,255,255,.5)',
+    paddingLeft: 10,
+    paddingTop: 10,
+    marginBottom: 15,
+  },
+  buttonText: {
+    textAlign: 'center',
+    color: '#fff',
+    fontWeight: 'bold',
+    fontSize: 15
+  },
+  buttonContainer: {
+    backgroundColor: '#3B3B98',
+    padding: 10,
+    borderRadius: 8
+  },
+  buttonDateContainer: {
+    backgroundColor: 'rgba(255,255,255,.5)',
+    marginBottom: 15,
+    width: 70
+  },
+  dropContainer: {
+    backgroundColor: 'rgba(255,255,255,.5)',
+    marginBottom: 15,
+    borderRadius: 8,
+    height: 40,
+    fontSize: 15,
+    paddingLeft: 10,
+  }
 });
 
 export default NoticeForm;

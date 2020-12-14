@@ -1,42 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { View, StyleSheet, TouchableOpacity, Text } from 'react-native';
-import NoticeCard from '../components/NoticeCard';
+import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import * as firebase from 'firebase/app';
 import 'firebase/firestore';
 import { FlatList } from 'react-native-gesture-handler';
-import { render } from 'react-dom';
-import Icon from 'react-native-vector-icons/Feather';
+
+import NoticeCard from '../components/NoticeCard';
 
 const db = firebase.app();
 
 const NoticesSchool = ({ navigation }) => {
-
-
-  const onBottomPress = () => {
-    navigation.navigate('CreateNotice');
-  }
-
-  const onBottonForm = () => {
-    navigation.navigate('login');
-  }
-
-  const onUpdateNotice = (key) => {
-    navigation.navigate('CreateNotice');
-  }
-
-  const onDeleteNotice = (key) => {
-    const response = db.firestore().collection('Aviso').doc(key).delete().then(
-      function () {
-        console.log("Aviso eliminada correctamente");
-        //navigation.navigate('NoticesSchool');
-      }
-    ).catch(
-      function (error) {
-        console.error("Error en eliminar");
-      }
-    )
-
-  }
+  const name = navigation.state.params.userName;
 
   const [ListNotices, setListNotices] = useState([])
 
@@ -46,7 +19,7 @@ const NoticesSchool = ({ navigation }) => {
 
   const getActivities = async () => {
     let list = [];
-    const response = await db.firestore().collection('Aviso').get();
+    const response = await db.firestore().collection('Aviso').where('Receptor', '==', name).get();
     response.forEach(document => {
       let id = document.id
       let date = convertDate(document.data().FechaLimite)
@@ -69,44 +42,20 @@ const NoticesSchool = ({ navigation }) => {
   }
 
   const createItem = ({ item }) => {
-
-
     return (
       <View>
-
-
-        <TouchableOpacity
-          onPress={() => onUpdateNotice(item.id)}
-        >
-          <TouchableOpacity style={styles.buttonDelete} onPress={() => onDeleteNotice(item.id)} >
-            <Icon name="delete" size={18} color="#ffff" />
-          </TouchableOpacity>
-          <NoticeCard
-            Title={item.aviso}
-            Contenido={item.descripcion}
-            Date={item.date + ""}
-          />
-
-
-        </TouchableOpacity>
-
+        <NoticeCard
+          Title={item.aviso}
+          Contenido={item.descripcion}
+          Date={item.date + ""}
+        />
       </View>
-
-
     );
-
-
   }
 
   return (
     <View style={styles.containerHome}>
       <View style={styles.containerCard}>
-        <TouchableOpacity style={styles.buttonContainer} onPress={onBottomPress} >
-          <Icon name="plus" size={35} color="#ffff" />
-        </TouchableOpacity>
-        {/**<TouchableOpacity style={styles.buttonContainer} onPress={onBottonForm} >
-          <Text style={styles.buttonText}>Press me</Text>
-        </TouchableOpacity>*/}
         <FlatList
           data={ListNotices}
           renderItem={createItem}
