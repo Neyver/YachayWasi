@@ -14,8 +14,12 @@
       "fallbackToCacheTimeout": 0
     },
     "assetBundlePatterns": [
-      "**/*"
+      "assets/*"
     ],
+    "android": {
+      "package": "com.umss.YachayWasi",
+      "versionCode": 1
+    },
     "ios": {
       "supportsTablet": true
     },
