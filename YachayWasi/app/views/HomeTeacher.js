@@ -1,15 +1,10 @@
-import { View, StyleSheet, Text, Button, ImagePropTypes } from 'react-native';
+import { View, StyleSheet, Text, FlatList } from 'react-native';
 import CustomButton from "../components/CustomButton";
 
 import React, { useState, useEffect } from 'react';
 import 'firebase/firestore';
 
-import firebaseConfig from '../../utils/firebaseConfig';
-const HomeTeacher = ({ navigation, user1 }) => {
-
-  const irdetalles = () => {
-    navigation.navigate('UserDetailScreen');
-  }
+const HomeTeacher = ({ navigation }) => {
 
   const options =
     [
@@ -48,26 +43,26 @@ const HomeTeacher = ({ navigation, user1 }) => {
       },
     ];
 
-  const createItem = () => options.map((option) => {
-    const { action, name, uriIcon } = option;
-    return (
-      <CustomButton
-        icon={uriIcon}
-        name={name}
-        action={action}
-        key={uriIcon}
-      />
-    );
-  });
+  const renderItem = ({ item }) => (
+    <CustomButton
+      icon={item.uriIcon}
+      name={item.name}
+      action={item.action}
+      key={item.uriIcon}
+    />
+  );
 
   return (
     <View style={styles.containerHome}>
       <View style={styles.containerWelcom}>
-        
         <Text style={styles.textWelcom}>Bienvenido</Text>
       </View>
       <View style={styles.containerHome}>
-        {createItem()}
+        <FlatList
+          data={options}
+          renderItem={renderItem}
+          keyExtractor={item => item.id}
+        />
       </View>
     </View>
   );

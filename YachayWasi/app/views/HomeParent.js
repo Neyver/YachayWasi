@@ -10,10 +10,10 @@ import { FlatList } from 'react-native-gesture-handler';
 import firebaseConfig from '../../utils/firebaseConfig';
 
 const db = firebase.app();
-const HomeParent = ({ navigation}) => {
+const HomeParent = ({ navigation }) => {
   const [name, onChangeName] = useState('');
   const [ListMaterias, setListMaterias] = useState([])
-  
+
   useEffect(() => {
     firebaseConfig.auth().onAuthStateChanged(user => {
       getUserById(user.uid);
@@ -38,14 +38,11 @@ const HomeParent = ({ navigation}) => {
       let nombre = document.data().Nombre
       let tutor = document.data().Tutor
       let action = async () => {
-        // const response = await db.firestore().collection('Usuario').doc(id);
-        // const documento = await response.get();
-        // const usuario = documento.data(); 
-        navigation.navigate('MyScore',{
+        navigation.navigate('MyScore', {
           userName: nombre,
         });
       }
-      let obj = { id, nombre, tutor, curso, action}
+      let obj = { id, nombre, tutor, curso, action }
       list.push(obj);
     })
     setListMaterias(list)
@@ -53,11 +50,11 @@ const HomeParent = ({ navigation}) => {
   const uriIcon = 'https://www.esfmjuanmisaelsaracho.edu.bo/images/especialidad.png'
   const createItem = ({ item }) => (
     <CustomButton
-        icon={uriIcon}
-        name={item.nombre}
-        action={item.action}
-        key={uriIcon}
-      />
+      icon={uriIcon}
+      name={item.nombre}
+      action={item.action}
+      key={uriIcon}
+    />
   );
 
   return (
@@ -76,7 +73,7 @@ const HomeParent = ({ navigation}) => {
 const styles = StyleSheet.create({
   containerHome: {
     flex: 1,
-    justifyContent:"center",
+    justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#4F728E"
   },
@@ -97,54 +94,54 @@ const styles = StyleSheet.create({
     right: -13,
     top: 90
   },
-    container:{
-      flex:1,
-      justifyContent:'center',
-      alignItems : 'center',
-      backgroundColor :'#4F728E'
-    },
-  container1:{
-      flexDirection : 'column',
-      alignItems : 'center',
-  justifyContent : 'center',
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#4F728E'
   },
-  row :{
-      flexDirection : 'row' 
-    },
-    textColor : {
-      fontWeight: 'bold',
-      margin:8,
-      color: '#FFFFFF',
-      fontSize: 24,
-      
-    }, 
-    body:{
-      flex:0.5,
-      //backgroundColor:'yellow',
-      justifyContent:'center',
-      alignItems : 'center',
-      top: -100
-     },
-     header:{
-      flex: 0.2,
-      //backgroundColor:"red",
-      alignItems : 'center',
-      
-    },
-    innerText: {
-      color: '#FFFFFF',
-      fontSize: 24,
-    },
-    propsbutton:{
-      alignItems : 'center',
-      justifyContent:'center', 
-      backgroundColor:'goldenrod',
-      elevation:4,
-      height:65, 
-      width:300,
-      borderRadius:6,
-      margin:8
-    }
+  container1: {
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  row: {
+    flexDirection: 'row'
+  },
+  textColor: {
+    fontWeight: 'bold',
+    margin: 8,
+    color: '#FFFFFF',
+    fontSize: 24,
+
+  },
+  body: {
+    flex: 0.5,
+    //backgroundColor:'yellow',
+    justifyContent: 'center',
+    alignItems: 'center',
+    top: -100
+  },
+  header: {
+    flex: 0.2,
+    //backgroundColor:"red",
+    alignItems: 'center',
+
+  },
+  innerText: {
+    color: '#FFFFFF',
+    fontSize: 24,
+  },
+  propsbutton: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'goldenrod',
+    elevation: 4,
+    height: 65,
+    width: 300,
+    borderRadius: 6,
+    margin: 8
+  }
 
 })
 export default HomeParent;
