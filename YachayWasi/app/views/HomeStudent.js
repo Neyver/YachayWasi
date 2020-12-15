@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import { View, StyleSheet, Text, FlatList } from 'react-native';
 import 'firebase/firestore';
 import * as firebase from 'firebase/app';
 
@@ -76,6 +76,14 @@ const HomeStudent = ({ navigation }) => {
       />
     );
   });
+  const renderItem = ({ item }) => (
+    <CustomButton
+      icon={item.uriIcon}
+      name={item.name}
+      action={item.action}
+      key={item.uriIcon}
+    />
+  );
 
   return (
     <View style={styles.containerHome}>
@@ -83,7 +91,11 @@ const HomeStudent = ({ navigation }) => {
         <Text style={styles.textWelcom}>Bienvenido</Text>
       </View>
       <View style={styles.containerHome}>
-        {createItem()}
+        <FlatList
+          data={options}
+          renderItem={renderItem}
+          keyExtractor={item => item.id}
+        />
       </View>
     </View>
   );
