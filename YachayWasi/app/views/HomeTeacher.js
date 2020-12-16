@@ -3,7 +3,7 @@ import CustomButton from "../components/CustomButton";
 
 import React, { useState, useEffect } from 'react';
 import 'firebase/firestore';
-
+import { styles } from '../styles/styles.js';
 const HomeTeacher = ({ navigation }) => {
 
   const options =
@@ -54,33 +54,19 @@ const HomeTeacher = ({ navigation }) => {
 
   return (
     <View style={styles.containerHome}>
-      <View style={styles.containerWelcom}>
-        <Text style={styles.textWelcom}>Bienvenido</Text>
-      </View>
-      <View style={styles.containerHome}>
+      <View style={styles.containerHomeElements}>
+        <View style={styles.containerWelcom}>
+          <Text style={styles.textWelcom}>Bienvenido</Text>
+        </View>
         <FlatList
           data={options}
           renderItem={renderItem}
           keyExtractor={item => item.id}
         />
-      </View>
     </View>
+    </View >
   );
 }
 
-const styles = StyleSheet.create({
-  containerHome: {
-    flex: 1,
-    backgroundColor: "#4F728E"
-  },
-  containerWelcom: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  textWelcom: {
-    fontSize: 40,
-  }
-});
 
 export default HomeTeacher;
