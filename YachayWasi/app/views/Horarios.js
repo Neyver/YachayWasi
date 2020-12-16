@@ -25,7 +25,7 @@ const Horario = () => {
 
   const getHorarios = async () => {
     let aux = [];
-    const response = await db.firestore().collection('Horario').get();
+    const response = await db.firestore().collection('HorarioProfesor').get();
     response.forEach(document => {
       aux.push(document.data());
     })
@@ -87,19 +87,20 @@ const Horario = () => {
   ];
 
   const createItem = (array) => array.map((option, index) => {
-    if (option.Dia) {
+    if (option.Dia && option.Materia !== 'Libre') {
       return (
         <Col key={index} style={[styles.col, { backgroundColor: option.Color }]}>
           <View>
             <Text style={styles.name}>{option.Materia}</Text>
             <Text style={styles.description}>{option.Aula}</Text>
+            <Text style={styles.description}>{option.Curso}</Text>
           </View>
         </Col >
       );
     }
     else {
       return (
-        <Col key={index} style={styles.col}><Text>{option.name}</Text></Col>
+        <Col key={index} style={styles.col}><Text>{option.name ? option.name : "Libre"}</Text></Col>
       );
     }
   });
