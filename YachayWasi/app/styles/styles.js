@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
     },
     ////////////////////////////Card Actividad
 
-    textColorBold: {
+    textColorBoldWhite: {
         color: 'white',
         fontWeight: 'bold',
         fontSize: 20,
@@ -111,12 +111,12 @@ const styles = StyleSheet.create({
         marginRight: 6,
         flex: 0.3
     },
-    textColorBold: {
+    textColorBoldWhite: {
         color: 'white',
         fontWeight: 'bold'
 
     },
-    textColor: {
+    textColorWhite: {
         color: 'white',
 
     },
@@ -130,9 +130,101 @@ const styles = StyleSheet.create({
         // height: 150,
         // width: 300,
         borderRadius: 10
-    }
+    },
     ////////////////////////////Card Aviso
+
+
+
+    ////////////////////////////User Detail Screem
+    containerUserDetail: {
+        flex: 1,
+        backgroundColor: '#4F728E'
+      },
+      buttonEditCenter: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingTop: 5,
+      },
+      avatar:{
+        flex: 0.4,
+        alignItems: 'center',
+      },
+      label:{
+        borderWidth: 1,
+        borderColor: 'white', 
+        padding: 5, 
+        marginTop: 2
+      },
+      container1: {
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+      },
+      row: {
+        flexDirection: 'row',
+      },
+      column: {
+        flexDirection: 'column',
+      },
+      textColorWhite: {
+        color: 'white',
+        padding: 5,
+      },
+      bodyUserDetail: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+      },
+      headerUserDetail: {
+        flex: 0.2,
+        alignItems: 'center',
+        paddingBottom: 5,
+      },
+      //////////////// avisos card
+      textColorBoldWhite:{
+        color : 'white',
+        fontWeight: 'bold',
+        fontSize:16       
+      },
+      mainCard: {
+        flex: 1,
+        padding: 10,
+      },
+      titleTheCard:{
+        //backgroundColor:'red',
+        justifyContent:'center',
+        marginLeft:6,
+        flex:0.3
     
+      },
+      deleteButton: {
+        alignContent: 'flex-end' 
+        
+      },
+      bodyTheCard:{
+        //backgroundColor:'yellow',
+        flex:1,
+        marginLeft:6
+    
+      },
+      footerTheCard:{
+        //backgroundColor:'green',
+        justifyContent:'center',
+        alignItems: 'flex-end',
+        marginRight: 6,
+        flex:0.3
+      },
+      alinSepa:{
+        alignItems : 'center',
+        justifyContent:'center',  
+      },
+      carta:{
+        backgroundColor:'#6b407e',
+        elevation:8,
+        height:170, 
+        width:320,
+        borderRadius:10
+    }
 });
 
 export { styles };
