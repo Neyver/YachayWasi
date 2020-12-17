@@ -18,7 +18,7 @@ const Home = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.textTitle}>Unidad Educativa Cositas React-Native</Text>
+      <Text style={styles.textTitle}>Yachay Wasi</Text>
       <Carousel images={images} style={styles.containerCarousel}></Carousel>
       <View style={styles.containerButton}>
         <Button title="Iniciar Sesion"
@@ -28,7 +28,7 @@ const Home = ({ navigation }) => {
         ></Button>
       </View>
       <Text style={styles.textDescription}>
-        Lorem ipsu sfovjndfkl dsodslk neo weo
+        Amo mi escuela....
           </Text>
     </View>
   );
