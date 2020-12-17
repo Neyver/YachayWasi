@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
         justifyContent:'center',  
       },
       carta:{
-        backgroundColor:'darkviolet',
+        backgroundColor:'#6b407e',
         elevation:4,
         height:150, 
         width:300,

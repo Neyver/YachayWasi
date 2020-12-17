@@ -25,7 +25,8 @@ const NoticesSchool = ({ navigation }) => {
       let date = convertDate(document.data().FechaLimite)
       let descripcion = document.data().Descripcion
       let aviso = document.data().Titulo
-      let obj = { id, aviso, descripcion, date }
+      let profEmisor = document.data().ProfesorEmisor
+      let obj = { id, aviso, descripcion, date , profEmisor}
       list.push(obj);
     })
     setListNotices(list)
@@ -47,6 +48,7 @@ const NoticesSchool = ({ navigation }) => {
         <NoticeCard
           Title={item.aviso}
           Contenido={item.descripcion}
+          Emisor={item.profEmisor}
           Date={item.date + ""}
         />
       </View>

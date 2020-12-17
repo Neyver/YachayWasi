@@ -6,7 +6,7 @@ import * as firebase from 'firebase/app';
 import firebaseConfig from '../../utils/firebaseConfig';
 import CustomButton from "../components/CustomButton";
 const db = firebase.app();
-
+import { styles } from '../styles/styles.js';
 const HomeStudent = ({ navigation }) => {
   const [usuario, onChangeUsuario] = useState({});
 
@@ -87,33 +87,18 @@ const HomeStudent = ({ navigation }) => {
 
   return (
     <View style={styles.containerHome}>
+      <View style={styles.containerHomeElements}>
       <View style={styles.containerWelcom}>
         <Text style={styles.textWelcom}>Bienvenido</Text>
       </View>
-      <View style={styles.containerHome}>
         <FlatList
           data={options}
           renderItem={renderItem}
           keyExtractor={item => item.id}
         />
-      </View>
+    </View>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  containerHome: {
-    flex: 1,
-    backgroundColor: "#4F728E"
-  },
-  containerWelcom: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  textWelcom: {
-    fontSize: 40,
-  }
-});
 
 export default HomeStudent;
