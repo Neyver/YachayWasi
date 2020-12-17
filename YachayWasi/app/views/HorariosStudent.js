@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import * as firebase from 'firebase/app';
 import { StyleSheet, View, Text } from 'react-native';
 import { Col, Row, Grid } from "react-native-easy-grid";
-
+import { styles} from '../styles/styles.js' ;
 const db = firebase.app();
 
 const Horario = ({ navigation }) => {
@@ -112,18 +112,4 @@ const Horario = ({ navigation }) => {
   )
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 13,
-    paddingTop: 30,
-    backgroundColor: '#ffffff'
-  },
-  col: {
-    borderWidth: 1,
-    borderColor: '#CFCBC9',
-    textAlign: "center",
-    padding: 2,
-  }
-});
 export default Horario;

@@ -6,7 +6,7 @@ import 'firebase/firestore';
 import { FlatList } from 'react-native-gesture-handler';
 import { render } from 'react-dom';
 import Icon from 'react-native-vector-icons/Feather';
-
+// import { styles} from '../styles/styles.js' ;
 const db = firebase.app();
 
 const NoticesSchool = ({ navigation }) => {

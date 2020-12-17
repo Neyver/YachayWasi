@@ -3,7 +3,7 @@ import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import * as firebase from 'firebase/app';
 import 'firebase/firestore';
 import { FlatList } from 'react-native-gesture-handler';
-
+// import { styles} from '../styles/styles.js' ;
 import NoticeCard from '../components/NoticeCard';
 
 const db = firebase.app();

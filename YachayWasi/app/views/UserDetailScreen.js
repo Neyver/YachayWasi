@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Button, TextInput, RefreshControl } from 'react
 import * as firebase from 'firebase/app';
 import 'firebase/firestore';
 import Avatar from '../components/avatar';
-
+// import { styles} from '../styles/styles.js' ;
 import firebaseConfig from '../../utils/firebaseConfig';
 
 const db = firebase.app();

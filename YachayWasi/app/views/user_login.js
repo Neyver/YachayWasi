@@ -2,7 +2,7 @@
 import React from 'react'
 import { View, StyleSheet } from 'react-native'
 import Login from '../components/login.js'
-
+// import { styles} from '../styles/styles.js' ;
 export default class UserLogin extends React.Component{
     render(){
         return(

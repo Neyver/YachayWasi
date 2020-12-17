@@ -1,6 +1,6 @@
 import { View, StyleSheet, Text, FlatList } from 'react-native';
 import CustomButton from "../components/CustomButton";
-
+import { styles} from '../styles/styles.js' ;
 import React, { useState, useEffect } from 'react';
 import 'firebase/firestore';
 
@@ -68,19 +68,5 @@ const HomeTeacher = ({ navigation }) => {
   );
 }
 
-const styles = StyleSheet.create({
-  containerHome: {
-    flex: 1,
-    backgroundColor: "#4F728E"
-  },
-  containerWelcom: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  textWelcom: {
-    fontSize: 40,
-  }
-});
 
 export default HomeTeacher;

@@ -1,7 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import { StyleSheet, ScrollView, Text, View, Dimensions, Image, Slider, Button } from 'react-native';
-import Carousel from '../components/Carousel'
+import Carousel from '../components/Carousel';
+  
+import { styles} from '../styles/styles.js' ;
 const images = [
   'https://c4.wallpaperflare.com/wallpaper/912/238/496/architecture-artistic-buildings-castle-wallpaper-preview.jpg',
   'https://c0.wallpaperflare.com/preview/638/482/358/castle-lawn-great-britain-england.jpg',
@@ -18,28 +20,21 @@ const Home = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.textTitle}>Yachay Wasi</Text>
+      
       <Carousel images={images} style={styles.containerCarousel}></Carousel>
       <View style={styles.containerButton}>
-        <Button title="Iniciar Sesion"
-          color="#51CDD7"
+        <Button title="Iniciar Sesion" 
+          color= '#D4C84C'
           style={styles.buttonIni}
           onPress={pressHandler}
         ></Button>
       </View>
+      <Text style={styles.textTitle}>Yachay Wasi</Text>
       <Text style={styles.textDescription}>
-        Amo mi escuela....
+        Amo mi escuelaita...
           </Text>
     </View>
   );
 }
-const styles = StyleSheet.create({
-  textTitle: { flex: 1, textAlign: "center", marginTop: 12 },
-  container: { flex: 1, backgroundColor: "#4F728E" },
-  containerCarousel: { flex: 4 },
-  containerButton: { flex: 3, alignSelf: "center", justifyContent: "center" },
-  buttonIni: { padding: 10 },
-  textDescription: { textAlign: "center", flex: 3 }
-});
 
 export default Home

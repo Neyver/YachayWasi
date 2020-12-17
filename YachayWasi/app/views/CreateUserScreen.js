@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { View, Button, TextInput, ScrollView, StyleSheet, TextInputBase } from 'react-native'
 import firebase from '../database/firebase'
-
+// import { styles} from '../styles/styles.js' ;
 const CreateUserScreen = (props) => {
 
   const [state, setState] = useState({
@@ -29,7 +29,7 @@ const CreateUserScreen = (props) => {
 
   }
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView style={styles.containerUserScreen}>
       <View style={styles.inputGroup}>
         <TextInput placeholder="Name User"
           onChangeText={(value) => setState({ ...state, name: value })}
@@ -51,17 +51,4 @@ const CreateUserScreen = (props) => {
 
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 35
-  },
-  inputGroup: {
-    flex: 1,
-    padding: 0,
-    marginBottom: 15,
-    borderBottomWidth: 1,
-    borderBottomColor: '#cccccc'
-  }
-})
 export default CreateUserScreen 

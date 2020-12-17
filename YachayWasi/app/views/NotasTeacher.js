@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import * as firebase from 'firebase/app';
-
+import { styles} from '../styles/styles.js' ;
 import ItemNotas from "./../components/ItemNotas";
 
 const db = firebase.app();
@@ -50,7 +50,7 @@ const NotasTeacher = ({ navigation }) => {
   });
 
   return (
-    <View style={styles.container}>
+    <View style={styles.containerNotasTeacher}>
       <View style={{
         flexDirection: "row",
         padding: 20,
@@ -87,20 +87,5 @@ const NotasTeacher = ({ navigation }) => {
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    paddingHorizontal: 10,
-    backgroundColor: "#4F728E",
-    height: "100%",
-  },
-  button: {
-    alignItems: "center",
-    backgroundColor: "#DDDDDD",
-    padding: 10,
-    borderColor: "#20232a",
-    borderWidth: 1,
-  },
-
-});
 
 export default NotasTeacher;

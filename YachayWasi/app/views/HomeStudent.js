@@ -5,6 +5,7 @@ import * as firebase from 'firebase/app';
 
 import firebaseConfig from '../../utils/firebaseConfig';
 import CustomButton from "../components/CustomButton";
+import { styles} from '../styles/styles.js' ;
 const db = firebase.app();
 
 const HomeStudent = ({ navigation }) => {
@@ -100,20 +101,5 @@ const HomeStudent = ({ navigation }) => {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  containerHome: {
-    flex: 1,
-    backgroundColor: "#4F728E"
-  },
-  containerWelcom: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  textWelcom: {
-    fontSize: 40,
-  }
-});
 
 export default HomeStudent;

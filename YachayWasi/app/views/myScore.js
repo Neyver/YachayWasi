@@ -4,7 +4,7 @@ import CalificacionCard from '../components/calificacionCard';
 import * as firebase from 'firebase/app';
 import 'firebase/firestore';
 import { FlatList } from 'react-native-gesture-handler';
-
+import { styles} from '../styles/styles.js' ;
 const db = firebase.app();
 
 const MyScore = ({ navigation }) => {
@@ -68,17 +68,5 @@ const MyScore = ({ navigation }) => {
   );
 }
 
-const styles = StyleSheet.create({
-  containerHome: {
-    flex: 1,
-    backgroundColor: "#4F728E"
-  },
-  containerCard: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: "stretch",
-    padding: 10,
-  },
-});
 
 export default MyScore;

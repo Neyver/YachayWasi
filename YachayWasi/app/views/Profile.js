@@ -2,7 +2,7 @@ import React from 'react'
 import { View, StyleSheet } from 'react-native'
 import Form_teacher from '../components/teacher_form'
 import Avatar from '../components/avatar'
-
+// import { styles} from '../styles/styles.js' ;
 export default class Profile extends React.Component {
   render() {
     return (

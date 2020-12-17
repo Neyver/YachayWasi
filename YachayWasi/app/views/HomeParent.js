@@ -8,7 +8,7 @@ import * as firebase from 'firebase/app';
 import 'firebase/firestore';
 import { FlatList } from 'react-native-gesture-handler';
 import firebaseConfig from '../../utils/firebaseConfig';
-
+import { styles} from '../styles/styles.js' ;
 const db = firebase.app();
 const HomeParent = ({ navigation }) => {
   const [name, onChangeName] = useState('');
@@ -71,19 +71,4 @@ const HomeParent = ({ navigation }) => {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  containerHome: {
-    flex: 1,
-    backgroundColor: "#4F728E"
-  },
-  containerWelcom: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  textWelcom: {
-    fontSize: 40,
-  }
-})
 export default HomeParent;

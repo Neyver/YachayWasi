@@ -3,7 +3,7 @@ import * as firebase from 'firebase/app';
 import { StyleSheet, View, Text } from 'react-native';
 import { Col, Row, Grid } from "react-native-easy-grid";
 import firebaseConfig from '../../utils/firebaseConfig';
-
+import { styles} from '../styles/styles.js' ;
 const db = firebase.app();
 
 const Horario = () => {
@@ -106,7 +106,7 @@ const Horario = () => {
   });
 
   return (
-    <View style={styles.container}>
+    <View style={styles.containerHorario}>
       <Grid>
         <Row size={0.3}>{createItem(header)}</Row>
         <Row>{createItem([{ name: "1" }, ...diaUno])}</Row>
@@ -119,18 +119,4 @@ const Horario = () => {
   )
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 13,
-    paddingTop: 30,
-    backgroundColor: '#ffffff'
-  },
-  col: {
-    borderWidth: 1,
-    borderColor: '#CFCBC9',
-    textAlign: "center",
-    padding: 2,
-  }
-});
 export default Horario;

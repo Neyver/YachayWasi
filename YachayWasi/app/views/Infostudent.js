@@ -4,7 +4,7 @@ import * as firebase from 'firebase/app';
 import 'firebase/firestore';
 import Form_teacher from '../components/teacher_form'
 import Avatar from '../components/avatar';
-
+import { styles} from '../styles/styles.js' ;
 import firebaseConfig from '../../utils/firebaseConfig';
 
 const db = firebase.app();
@@ -71,7 +71,7 @@ const UserDetailScreen = (props) => {
   const [disable_text, edit] = React.useState(false);
   return (
 
-    <View style={styles.container}>
+    <View style={styles.containerHome}>
 
       <View style={styles.header} >
         <TextInput placeholder="" placeholderTextColor="white" maxLength={15} value={Texto1} onChangeText={text => onChangeText1(text)}
@@ -120,35 +120,4 @@ const UserDetailScreen = (props) => {
     </View>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#4F728E'
-  },
-  container1: {
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  row: {
-    flexDirection: 'row'
-  },
-  textColor: {
-    color: 'white',
-    padding: 10,
-
-  },
-  body: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    top: -100
-  },
-  header: {
-    flex: 0.2,
-    alignItems: 'center',
-
-  },
-})
 export default UserDetailScreen 
