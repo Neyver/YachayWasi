@@ -4,7 +4,7 @@ import Activcard from '../components/actividadCard';
 import * as firebase from 'firebase/app';
 import 'firebase/firestore';
 import { FlatList } from 'react-native-gesture-handler';
-
+import { styles} from '../styles/styles.js' ;
 const db = firebase.app();
 
 const ActivitiesSchool = ({ navigation }) => {
@@ -53,21 +53,5 @@ const ActivitiesSchool = ({ navigation }) => {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  containerHome: {
-    flex: 1,
-    backgroundColor: "#4F728E"
-  },
-  containerCard: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 10,
-  },
-  textWelcom: {
-    fontSize: 40,
-  }
-});
 
 export default ActivitiesSchool;

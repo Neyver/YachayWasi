@@ -1,80 +1,37 @@
 import React from 'react';
 import { StyleSheet, ScrollView, Text, View, Dimensions, Image } from 'react-native';
-
-const Activcard = ({ Title, Contenido, Date, color }) =>{
+import { styles} from '../styles/styles.js' ;
+const Activcard = ({ Title, Contenido, Date}) =>{
+  var getRandomColor = function () {
+    let listCol =['#DB6D8C','#51CDD7','#D4C84C','#4CD472']
+    console.log(getRandomInt(0, 4)); 
+    return listCol[getRandomInt(0, 4)];
+  };
+  
+  function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min)) + min;
+  }
+  const colorStyles = {
+    backgroundColor: getRandomColor(),
+  };
    return(
-      <View style={styles.mainCard}>     
-        <View style={styles.carta}>  
-          <View style={styles.titleTheCard}>
-            <Text style={styles.textColorBold}>{Title}</Text>
+      <View style={styles.actividadCardmainCard}>     
+        <View style={[styles.actividadCardcarta, colorStyles]}>  
+          <View style={styles.actividadCardtitleTheCard}>
+            <Text style={styles.actividadCardtextColorBold}>{Title}</Text>
           </View>
-        <View style={styles.alinSepa}>
+        <View style={styles.actividadCardalinSepa}>
         
         </View>
-          <View style={styles.bodyTheCard }>
-            <Text style={styles.textColor}>{Contenido}</Text>
+          <View style={styles.actividadCardbodyTheCard }>
+            <Text style={styles.actividadCardtextColor}>{Contenido}</Text>
           </View>
-          <View style={styles.footerTheCard}>
-            <Text style={styles.textColorBold}>{Date}</Text>
+          <View style={styles.actividadCardfooterTheCard}>
+            <Text style={styles.actividadCardtextColorBold}>{Date}</Text>
           </View>           
         </View>
         </View>
     );
     }      
-const styles = StyleSheet.create({
-    
-      textColorBold:{
-        color : 'white',
-        fontWeight: 'bold',
-        fontSize:20       
-      },
-      mainCard: {
-        flex: 1,
-        padding: 10,
-      },
-      
-      titleTheCard:{
-        backgroundColor:'#2A333A',
-        justifyContent:'center',
-        //marginLeft:6,
-        flex:0.3
-    
-      },
-      bodyTheCard:{
-        //backgroundColor:'yellow',
-        flex:1,
-        //marginLeft:6
-    
-      },
-      footerTheCard:{
-        backgroundColor:'#2A333A',
-        justifyContent:'center',
-        alignItems: 'flex-end',
-        
-        //marginRight: 6,
-        flex:0.3
-      },
-      textColorBold:{
-        color : 'white',
-        fontWeight: 'bold'
-        
-      },
-      textColor : {
-        color : 'white',
-        
-      },
-      alinSepa:{
-        alignItems : 'center',
-        justifyContent:'center',  
-      },
-      carta:{
-        backgroundColor:'#4CD472',
-        elevation:4,
-        height:150, 
-        width:300,
-        borderRadius:10
-    }
-      
-});
 
 export default Activcard;

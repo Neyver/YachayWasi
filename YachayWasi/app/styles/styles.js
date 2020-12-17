@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
       },
       
-      // Notices Teacher
+      // Notices Teacher -myScore
       containerCard: {
         flex: 1,
         justifyContent: 'center',
@@ -133,8 +133,58 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         width: 50,
         marginLeft: 10,
-      }
+      },
+//COMPONENTS
+actividadCardtextColorBold:{
+    color : 'white',
+    fontWeight: 'bold',
+    fontSize:20       
+  },
+  actividadCardmainCard: {
+    flex: 1,
+    padding: 10,
+  },
+  
+  actividadCardtitleTheCard:{
+    backgroundColor:'#4F728E',
+    justifyContent:'center',
+    //marginLeft:6,
+    flex:0.3
 
+  },
+  actividadCardbodyTheCard:{
+    //backgroundColor:'yellow',
+    flex:1,
+    //marginLeft:6
+
+  },
+  actividadCardfooterTheCard:{
+    backgroundColor:'#4F728E',
+    justifyContent:'center',
+    alignItems: 'flex-end',
+    
+    //marginRight: 6,
+    flex:0.3
+  },
+  actividadCardtextColorBold:{
+    color : 'white',
+    fontWeight: 'bold'
+    
+  },
+  actividadCardtextColor : {
+    color : 'white',
+    
+  },
+  actividadCardalinSepa:{
+    alignItems : 'center',
+    justifyContent:'center',  
+  },
+  actividadCardcarta:{
+    elevation:4,
+    height:150, 
+    width:300,
+    borderRadius:10
+}
   });
   
 
