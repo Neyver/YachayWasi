@@ -34,7 +34,7 @@ const HomeStudent = ({ navigation }) => {
         },
         name: "Mis Notas",
         uriIcon: 'https://www.esfmjuanmisaelsaracho.edu.bo/images/especialidad.png',
-        color: "#f20c0c"
+        color: "#DB6D8C"
       },
       {
         action: () => {
@@ -44,7 +44,7 @@ const HomeStudent = ({ navigation }) => {
         },
         name: "Horario",
         uriIcon: 'https://image.flaticon.com/icons/png/512/376/376853.png',
-        color: "#5976b3"
+        color: "#51CDD7"
       },
       {
         action: () => {
@@ -52,7 +52,7 @@ const HomeStudent = ({ navigation }) => {
         },
         name: "Actividades",
         uriIcon: 'https://img.icons8.com/color/452/calendar.png',
-        color: "#5976b3"
+        color: "#D4C84C"
       },
       {
         action: () => {
@@ -62,41 +62,45 @@ const HomeStudent = ({ navigation }) => {
         },
         name: "Avisos",
         uriIcon: 'https://images.vexels.com/media/users/3/157272/isolated/preview/e6d8b2a22f0f860af01343af96e94a8a-libros-apilados-vector-by-vexels.png',
-        color: "red"
+        color: "#4CD472"
       },
     ];
 
-  const createItem = () => options.map((option) => {
-    const { action, name, uriIcon } = option;
-    return (
-      <CustomButton
-        icon={uriIcon}
-        name={name}
-        action={action}
-        key={uriIcon}
-      />
-    );
-  });
+  // const createItem = () => options.map((option) => {
+  //   const { action, name, uriIcon, color } = option;
+  //   return (
+  //     <CustomButton
+  //       icon={uriIcon}
+  //       name={name}
+  //       action={action}
+  //       color={color}
+  //       key={uriIcon}
+  //     />
+  //   );
+  // });
   const renderItem = ({ item }) => (
     <CustomButton
       icon={item.uriIcon}
       name={item.name}
       action={item.action}
+      color={item.color}
       key={item.uriIcon}
     />
   );
 
   return (
     <View style={styles.containerHome}>
+      <View style={styles.containerHomeElements}>
       <View style={styles.containerWelcom}>
         <Text style={styles.textWelcom}>Bienvenido</Text>
       </View>
-      <View style={styles.containerHome}>
+      <View style={styles.containerButtons}>
         <FlatList
           data={options}
           renderItem={renderItem}
           keyExtractor={item => item.id}
         />
+      </View>
       </View>
     </View>
   );
