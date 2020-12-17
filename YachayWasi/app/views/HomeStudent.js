@@ -26,7 +26,7 @@ const HomeStudent = ({ navigation }) => {
   const options =
     [
       {
-        action: async () => {
+        action: () => {
           navigation.navigate('MyScore', {
             userName: usuario.Nombre,
           });

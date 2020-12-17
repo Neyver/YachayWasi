@@ -8,7 +8,7 @@ import * as firebase from 'firebase/app';
 import 'firebase/firestore';
 import { FlatList } from 'react-native-gesture-handler';
 import firebaseConfig from '../../utils/firebaseConfig';
-import {styles} from '../styles/styles.js';
+
 const db = firebase.app();
 const HomeParent = ({ navigation }) => {
   const [name, onChangeName] = useState('');
@@ -30,7 +30,7 @@ const HomeParent = ({ navigation }) => {
 
   const getHijos = async (id) => {
     let list = [];
-    const response = await db.firestore().collection('Estudiante').where("Tutor","==",id).get();
+    const response = await db.firestore().collection('Estudiante').where("Tutor", "==", id).get();
 
     response.forEach(document => {
       let id = document.id
@@ -59,16 +59,31 @@ const HomeParent = ({ navigation }) => {
 
   return (
     <View style={styles.containerHome}>
-      <View style={styles.containerHomeElements}>
-      <View style={styles.containerCard}>
+      <View style={styles.containerWelcom}>
+      </View>
+      <View style={styles.containerHome}>
         <FlatList
           data={ListMaterias}
           renderItem={createItem}
           keyExtractor={item => item.id}
         />
       </View>
-      </View>
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  containerHome: {
+    flex: 1,
+    backgroundColor: "#4F728E"
+  },
+  containerWelcom: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  textWelcom: {
+    fontSize: 40,
+  }
+})
 export default HomeParent;
