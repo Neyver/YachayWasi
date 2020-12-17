@@ -10,7 +10,7 @@ import Icon from 'react-native-vector-icons/Feather';
 const db = firebase.app();
 
 const NoticesSchool = ({ navigation }) => {
-
+  const name = navigation.state.params.userName;
 
   const onBottomPress = () => {
     navigation.navigate('CreateNotice');
@@ -28,13 +28,14 @@ const NoticesSchool = ({ navigation }) => {
     const response = db.firestore().collection('Aviso').doc(key).delete().then(
       function () {
         console.log("Aviso eliminada correctamente");
-        //navigation.navigate('NoticesSchool');
+        
       }
     ).catch(
       function (error) {
-        console.error("Error en eliminar");
+        console.error("Error en eliminar",error);
       }
     )
+    getActivities();
 
   }
 
@@ -46,7 +47,7 @@ const NoticesSchool = ({ navigation }) => {
 
   const getActivities = async () => {
     let list = [];
-    const response = await db.firestore().collection('Aviso').get();
+    const response = await db.firestore().collection('Aviso').where('ProfesorEmisor', '==', name).get();
     response.forEach(document => {
       let id = document.id
       let date = convertDate(document.data().FechaLimite)
@@ -59,12 +60,15 @@ const NoticesSchool = ({ navigation }) => {
   }
 
   const convertDate = (date) => {
+    console.log(date);
     if (date == "") {
       return "Fecha no definida";
     }
     let dateLocal;
     dateLocal = date.toDate();
+    console.log(dateLocal);
     var d = dateLocal.toString()
+    console.log(d);
     return d.substr(0, 21);
   }
 
@@ -74,13 +78,12 @@ const NoticesSchool = ({ navigation }) => {
     return (
       <View>
 
-
-        <TouchableOpacity
-          onPress={() => onUpdateNotice(item.id)}
-        >
           <TouchableOpacity style={styles.buttonDelete} onPress={() => onDeleteNotice(item.id)} >
             <Icon name="delete" size={18} color="#ffff" />
           </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => onUpdateNotice(item.id)}
+        >
           <NoticeCard
             Title={item.aviso}
             Contenido={item.descripcion}
@@ -121,6 +124,7 @@ const styles = StyleSheet.create({
   containerHome: {
     flex: 1,
     backgroundColor: "#888"
+    //backgroundColor: "rgb(255, 255, 250)"
   },
   containerCard: {
     flex: 1,
@@ -135,7 +139,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgb(89, 217, 157);',
     padding: 5,
     borderRadius: 23,
-    marginLeft: 250
+    marginLeft: 280,
+    elevation: 20
   },
   buttonText: {
     textAlign: 'center',

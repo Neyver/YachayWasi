@@ -32,6 +32,7 @@ const styles = StyleSheet.create({
     
       textColorBold:{
         color : 'white',
+        //color: 'black',
         fontWeight: 'bold',
         fontSize:20       
       },
@@ -66,10 +67,7 @@ const styles = StyleSheet.create({
       },
       textColorBold:{
         color : 'white',
-        fontWeight: 'bold',
-        flex: 0.3,
-        justifyContent: "center",
-        
+        fontWeight: 'bold',  
         
       },
       textColor : {
@@ -82,8 +80,10 @@ const styles = StyleSheet.create({
       },
       carta:{
         backgroundColor:'teal',
-        elevation:8, 
-        width:300,
+        //backgroundColor: "#fff",
+        elevation:10,
+        height:170, 
+        width:350,
         borderRadius:10
     }
       

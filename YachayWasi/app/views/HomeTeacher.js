@@ -1,10 +1,28 @@
 import { View, StyleSheet, Text, FlatList } from 'react-native';
 import CustomButton from "../components/CustomButton";
-
+import * as firebase from 'firebase/app';
 import React, { useState, useEffect } from 'react';
 import 'firebase/firestore';
+import { unstable_renderSubtreeIntoContainer } from 'react-dom';
+import firebaseConfig from '../../utils/firebaseConfig';
+const db = firebase.app();
 
 const HomeTeacher = ({ navigation }) => {
+
+  const [usuario, onChangeUsuario] = useState({});
+
+  useEffect(() => {
+    firebaseConfig.auth().onAuthStateChanged(user => {
+      getUsuario(user.uid);
+    })
+  }, []);
+
+  const getUsuario = async (uid) => {
+    const response = await db.firestore().collection("Usuario").doc(uid);
+    const documento = await response.get();
+    const usuario = documento.data();
+    onChangeUsuario(usuario);
+  }
 
   const options =
     [
@@ -35,7 +53,9 @@ const HomeTeacher = ({ navigation }) => {
       },
       {
         action: () => {
-          navigation.navigate('NoticesSchool');
+          navigation.navigate('NoticesSchool',{
+            userName: usuario.Nombre,
+          });
         },
         name: "Avisos",
         uriIcon: 'https://images.vexels.com/media/users/3/157272/isolated/preview/e6d8b2a22f0f860af01343af96e94a8a-libros-apilados-vector-by-vexels.png',

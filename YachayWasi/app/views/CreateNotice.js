@@ -10,7 +10,7 @@ const db = firebase.app();
 const CreateNotice = ({ navigation }) => {
 
     return(
-        <NoticeFrom/>
+        <NoticeFrom navigate={navigation}/>
         
     );
   
