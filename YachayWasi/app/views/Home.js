@@ -18,6 +18,7 @@ const Home = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
+      <Text style={styles.textTitle1}>Unidad Educativa</Text>
       <Text style={styles.textTitle}>Yachay Wasi</Text>
       <Carousel images={images} style={styles.containerCarousel}></Carousel>
       <View style={styles.containerButton}>
@@ -28,18 +29,19 @@ const Home = ({ navigation }) => {
         ></Button>
       </View>
       <Text style={styles.textDescription}>
-        Amo mi escuela....
+        Colegio líder en el país, destacado por la excelecia académica y comprometido con el desarrollo integral de sus estudiantes.
           </Text>
     </View>
   );
 }
 const styles = StyleSheet.create({
-  textTitle: { flex: 1, textAlign: "center", marginTop: 12 },
+  textTitle: { flex: 1, textAlign: "center", color: "white", fontSize: 20 },
+  textTitle1: { flex: 1, textAlign: "center", marginTop: 12, color: "white", fontSize: 25 },
   container: { flex: 1, backgroundColor: "#4F728E" },
   containerCarousel: { flex: 4 },
   containerButton: { flex: 3, alignSelf: "center", justifyContent: "center" },
   buttonIni: { padding: 10 },
-  textDescription: { textAlign: "center", flex: 3 }
+  textDescription: { textAlign: "center", flex: 3, color: "white" }
 });
 
 export default Home
