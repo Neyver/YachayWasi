@@ -23,6 +23,7 @@ const calificacionCard = ({ Materia, Profesor, PBimestre, SBimestre, TBimestre, 
             <View style={styles.carta, colorStyles}>
                 <View style={styles.MateriaTheCard}>
                     <Text style={styles.textColorBold}>{Materia}</Text>
+                    <Text style={styles.textColorBold}>Profesor: {Profesor}</Text>
                 </View>
                 <View style={styles.alinSepa} />
                 <View style={styles.bodyTheCard}>
@@ -35,7 +36,7 @@ const calificacionCard = ({ Materia, Profesor, PBimestre, SBimestre, TBimestre, 
                 </View>
                 <View style={styles.alinSepa} />
                 <View style={styles.footerTheCard}>
-                    <Text style={styles.textColorBold}>Profesor: {Profesor}</Text>
+                    
                 </View>
             </View>
         </View>
@@ -56,6 +57,7 @@ const styles = StyleSheet.create({
     },
     MateriaTheCard: {
         //backgroundColor:'red',
+        flexDirection:'row',
         justifyContent: 'center',
         marginLeft: 6,
         flex: 0.3

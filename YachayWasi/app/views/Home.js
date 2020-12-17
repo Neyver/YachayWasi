@@ -20,7 +20,7 @@ const Home = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      
+     
       <Carousel images={images} style={styles.containerCarousel}></Carousel>
       <View style={styles.containerButton}>
         <Button title="Iniciar Sesion" 
@@ -29,12 +29,24 @@ const Home = ({ navigation }) => {
           onPress={pressHandler}
         ></Button>
       </View>
+      <View style ={styless.hoja}> 
       <Text style={styles.textTitle}>Yachay Wasi</Text>
       <Text style={styles.textDescription}>
         Amo mi escuelaita...
           </Text>
+          </View>
     </View>
   );
 }
 
+const styless = StyleSheet.create({
+ 
+  hoja: {
+    margin:25,
+    height:399
+    ,
+    backgroundColor: '#2E4053'
+  },
+  
+})
 export default Home

@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
     container: { flex: 1, backgroundColor: darkColor },
     containerCarousel: { flex: 4 },
     containerButton: { flex: 3, alignSelf: "center", justifyContent: "center" },
-    buttonIni: { padding: 10,color: yellowColor, backgroundColor: yellowColor,elevation:4, height:150,  width:300,},
+    buttonIni: { padding: 10,color: yellowColor, backgroundColor: yellowColor,elevation:4},
     textDescription: { textAlign: "center", flex: 3 },
     //HOMEUSER
     containerHome: {                     //Homes users -

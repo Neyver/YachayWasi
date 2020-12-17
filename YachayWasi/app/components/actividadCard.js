@@ -32,32 +32,26 @@ const styles = StyleSheet.create({
         flex: 1,
         padding: 10,
       },
+      
       titleTheCard:{
-        //backgroundColor:'red',
+        backgroundColor:'#2A333A',
         justifyContent:'center',
-        marginLeft:6,
-        flex:0.3
-    
-      },
-      titleTheCard:{
-        //backgroundColor:'red',
-        justifyContent:'center',
-        marginLeft:6,
+        //marginLeft:6,
         flex:0.3
     
       },
       bodyTheCard:{
         //backgroundColor:'yellow',
         flex:1,
-        marginLeft:6
+        //marginLeft:6
     
       },
       footerTheCard:{
-        //backgroundColor:'green',
+        backgroundColor:'#2A333A',
         justifyContent:'center',
         alignItems: 'flex-end',
         
-        marginRight: 6,
+        //marginRight: 6,
         flex:0.3
       },
       textColorBold:{
@@ -74,7 +68,7 @@ const styles = StyleSheet.create({
         justifyContent:'center',  
       },
       carta:{
-        backgroundColor:'#51CDD7',
+        backgroundColor:'#4CD472',
         elevation:4,
         height:150, 
         width:300,

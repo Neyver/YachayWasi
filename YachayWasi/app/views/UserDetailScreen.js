@@ -78,16 +78,10 @@ const UserDetailScreen = (props) => {
 
   const [disable_text, edit] = React.useState(false);
   return (
-
+    
     <View style={styles.container}>
-
-      <View style={styles.header} >
-        <TextInput placeholder="" placeholderTextColor="white" maxLength={15} value={Texto1} onChangeText={text => onChangeText1(text)}
-          style={{ borderWidth: 1, borderColor: 'white', padding: 5, marginTop: 7 }}
-        >
-        </TextInput>
-        <Button title="Mostrar" color="rgba(91,132,168,100)" onPress={hm}></Button>
-      </View>
+      <View style={styles.hoja}>
+      
       <Avatar name={user.name} linkphoto={user.photo} ></Avatar>
 
       <View style={styles.body}>
@@ -125,6 +119,7 @@ const UserDetailScreen = (props) => {
           </View>
         </View>
       </View>
+      </View>
     </View>
   )
 }
@@ -133,6 +128,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#4F728E'
+  },
+  hoja: {
+    margin:20,
+    height:700,
+    backgroundColor: '#2E4053'
   },
   container1: {
     flexDirection: 'column',
