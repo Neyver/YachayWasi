@@ -117,6 +117,6 @@ const Horario = () => {
       </Grid>
     </View >
   )
+  
 }
-
 export default Horario;

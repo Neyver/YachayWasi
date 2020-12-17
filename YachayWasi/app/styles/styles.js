@@ -50,7 +50,18 @@ const styles = StyleSheet.create({
     //MYSCORE
     
     //HORARIO   and     HORARIO STUDENT
-    
+    containerHorario: {
+        flex: 1,
+        padding: 13,
+        paddingTop: 30,
+        backgroundColor: '#ffffff'
+      },
+      col: {
+        borderWidth: 1,
+        borderColor: '#CFCBC9',
+        textAlign: "center",
+        padding: 2,
+      },
 
     //UserDetail
     containerUserScreen: {
