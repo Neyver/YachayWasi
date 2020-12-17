@@ -27,7 +27,15 @@ const HomeParent = ({ navigation }) => {
     onChangeName(usuario.Nombre);
   };
 
-
+  var getRandomColor = function () {
+    let listCol =['#DB6D8C','#51CDD7','#D4C84C','#4CD472']
+    console.log(getRandomInt(0, 4)); 
+    return listCol[getRandomInt(0, 4)];
+  };
+  
+  function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min)) + min;
+  }
   const getHijos = async (id) => {
     let list = [];
     const response = await db.firestore().collection('Estudiante').where("Tutor", "==", id).get();
@@ -53,20 +61,23 @@ const HomeParent = ({ navigation }) => {
       icon={uriIcon}
       name={item.nombre}
       action={item.action}
+      color={getRandomColor()}
       key={uriIcon}
     />
   );
 
   return (
     <View style={styles.containerHome}>
+    <View style={styles.containerHomeElements}>
       <View style={styles.containerWelcom}>
       </View>
-      <View style={styles.containerHome}>
+      <View style={styles.containerButtons}>
         <FlatList
           data={ListMaterias}
           renderItem={createItem}
           keyExtractor={item => item.id}
         />
+      </View>
       </View>
     </View>
   );

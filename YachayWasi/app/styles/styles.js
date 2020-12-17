@@ -4,8 +4,8 @@ import { StyleSheet } from 'react-native';
 
 
 const darkColor = '#2A333A';
-const FirstThemeDarkColor = '#2A333A';
-const FirstThemeLigthColor = '#2A333A';
+const FirstThemeDarkColor = '#475B6F';
+const FirstThemeLigthColor = '#4F728E';
 const pinkColor = '#DB6D8C';
 const yellowColor = '#D4C84C';
 const skyblueColor = '#51CDD7';
@@ -20,12 +20,29 @@ const styles = StyleSheet.create({
     buttonIni: { padding: 10,color: yellowColor, backgroundColor: yellowColor,elevation:4, height:150,  width:300,},
     textDescription: { textAlign: "center", flex: 3 },
     //HOMEUSER
-    containerHome: {                     //Homes users -
+    containerHome: {
         flex: 1,
-        backgroundColor: FirstThemeDarkColor
-      },
+        paddingVertical: 24,
+        paddingHorizontal: 24,
+        backgroundColor: darkColor,
+    },
+    containerHomeElements: {
+        flex: 1,
+        // paddingVertical: 25,
+        // paddingHorizontal: 25,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: FirstThemeLigthColor
+    },
+    containerButtons: {
+        flex: 5,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
       containerWelcom: {
+        justifyContent: 'center',
         fl: 'center',
+        flex: 2,
       },
       textWelcom: {
         fontSize: 40,
