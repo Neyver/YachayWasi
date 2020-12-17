@@ -81,13 +81,6 @@ const UserDetailScreen = (props) => {
 
     <View style={styles.container}>
 
-      <View style={styles.header} >
-        <TextInput placeholder="" placeholderTextColor="white" maxLength={15} value={Texto1} onChangeText={text => onChangeText1(text)}
-          style={{ borderWidth: 1, borderColor: 'white', padding: 5, marginTop: 7 }}
-        >
-        </TextInput>
-        <Button title="Mostrar" color="rgba(91,132,168,100)" onPress={hm}></Button>
-      </View>
       <Avatar name={user.name} linkphoto={user.photo} ></Avatar>
 
       <View style={styles.body}>
