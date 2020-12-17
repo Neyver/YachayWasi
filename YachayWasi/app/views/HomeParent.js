@@ -30,7 +30,7 @@ const HomeParent = ({ navigation }) => {
 
   const getHijos = async (id) => {
     let list = [];
-    const response = await db.firestore().collection('Estudiante').where("Tutor","==",id).get();
+    const response = await db.firestore().collection('Estudiante').where("Tutor", "==", id).get();
 
     response.forEach(document => {
       let id = document.id
@@ -59,7 +59,9 @@ const HomeParent = ({ navigation }) => {
 
   return (
     <View style={styles.containerHome}>
-      <View style={styles.containerCard}>
+      <View style={styles.containerWelcom}>
+      </View>
+      <View style={styles.containerHome}>
         <FlatList
           data={ListMaterias}
           renderItem={createItem}
@@ -73,8 +75,6 @@ const HomeParent = ({ navigation }) => {
 const styles = StyleSheet.create({
   containerHome: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
     backgroundColor: "#4F728E"
   },
   containerWelcom: {
@@ -84,64 +84,6 @@ const styles = StyleSheet.create({
   },
   textWelcom: {
     fontSize: 40,
-  },
-  imageT: {
-    position: 'absolute',
-    width: 40,
-    height: 40,
-    borderRadius: 100,
-    position: 'absolute',
-    right: -13,
-    top: 90
-  },
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#4F728E'
-  },
-  container1: {
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  row: {
-    flexDirection: 'row'
-  },
-  textColor: {
-    fontWeight: 'bold',
-    margin: 8,
-    color: '#FFFFFF',
-    fontSize: 24,
-
-  },
-  body: {
-    flex: 0.5,
-    //backgroundColor:'yellow',
-    justifyContent: 'center',
-    alignItems: 'center',
-    top: -100
-  },
-  header: {
-    flex: 0.2,
-    //backgroundColor:"red",
-    alignItems: 'center',
-
-  },
-  innerText: {
-    color: '#FFFFFF',
-    fontSize: 24,
-  },
-  propsbutton: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'goldenrod',
-    elevation: 4,
-    height: 65,
-    width: 300,
-    borderRadius: 6,
-    margin: 8
   }
-
 })
 export default HomeParent;
