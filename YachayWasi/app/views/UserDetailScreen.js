@@ -16,16 +16,16 @@ const UserDetailScreen = (props) => {
       getUserById(user.uid)
     })
   }, []);
-  const initialState ={
-    
-      id: '',
-      name: '',
-      email: '',
-      phone: '',
-      photo: '',
-      rol:'',
-      password:''
-    
+  const initialState = {
+
+    id: '',
+    name: '',
+    email: '',
+    phone: '',
+    photo: '',
+    rol: '',
+    password: ''
+
   }
   const [user, setUser] = useState(initialState)
 
@@ -46,14 +46,14 @@ const UserDetailScreen = (props) => {
       name: usuario.Nombre,
       phone: usuario.Telefono,
       photo: usuario.Foto,
-      rol:usuario.Rol,
-      password:usuario.Contraseña
+      rol: usuario.Rol,
+      password: usuario.Contraseña
     })
 
   };
-   
+
   const updateUser = async () => {
-    
+
     const response = await db.firestore().collection('Usuario').doc(user.id);
     const documento = await response.get();
     const usuario = documento.data();
@@ -65,7 +65,7 @@ const UserDetailScreen = (props) => {
       Telefono: user.phone,
       Foto: usuario.Foto,
       Rol: usuario.Rol,
-      Contraseña: usuario.Contraseña
+      Contrasenia: usuario.Contrasenia
     });
   };
 
@@ -74,7 +74,7 @@ const UserDetailScreen = (props) => {
     console.log(Texto1);
   }
 
-  
+
 
   const [disable_text, edit] = React.useState(false);
   return (
@@ -93,7 +93,7 @@ const UserDetailScreen = (props) => {
       <View style={styles.body}>
         <View style={styles.container1}>
           <View style={{ left: 100 }}>
-            <Button title="Editar" color="rgba(91,132,168,100)" onPress={edit}></Button>
+            <Button title="Editar" color="rgba(91,132,168,100)" onPress={() => { edit(true) }}></Button>
           </View>
           <View style={styles.row}>
 
