@@ -75,9 +75,9 @@ const styles = StyleSheet.create({
       },
       carta:{
         backgroundColor:'#51CDD7',
-        elevation:4,
+        elevation:10,
         height:150, 
-        width:300,
+        width:330,
         borderRadius:10
     }
       

@@ -4,9 +4,9 @@
     "slug": "YachayWasi",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/logo-appsquare.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/logo-app-splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },

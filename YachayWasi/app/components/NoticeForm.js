@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import * as firebase from 'firebase/app';
-//import firebase from '../database/firebase'
-//import 'firebase/firestore';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, Alert } from 'react-native';
 //import Textarea from 'react-native-textarea';
 //import DatePicker from 'react-native-modal-datetime-picker'
 //import DatePicker from 'react-native-datepicker'
@@ -13,10 +11,10 @@ import firebaseConfig from '../../utils/firebaseConfig';
 
 
 const db = firebase.app();
-
+const navigation = '';
 
 class NoticeForm extends Component {
-
+  
   state = {
     notice: '',
     description: '',
@@ -25,11 +23,15 @@ class NoticeForm extends Component {
     student: '',
     teacher: '',
     studentByID: [],
-    navigation: ''
+    navigation: '',
   }
 
-  constructor(props) {
+  constructor(props){
     super(props);
+    //this.setState({navigation: props.navigate});
+    this.state.navigation = props.navigate
+    console.log(props.navigate);
+    console.log(this.state.navigation);
     firebaseConfig.auth().onAuthStateChanged(user => {
       this.getStudents(user.id);
       this.getUserById(user.uid);
@@ -56,7 +58,7 @@ class NoticeForm extends Component {
     response.forEach(document => {
       let label = document.data().Nombre + " " + document.data().Curso;
       let value = document.data().Nombre;
-      let icon = () => <Icon name="plus" size={18} color="#900" />
+      let icon = () => <Icon name="user" size={18} color="#900" />
 
       let obj = { label, value, icon }
       listStudent.push(obj);
@@ -65,29 +67,37 @@ class NoticeForm extends Component {
   }
 
   onBottomPress = () => {
-    db.firestore().collection('Aviso').add({
-      Titulo: this.state.notice,
-      Descripcion: this.state.description,
-      FechaLimite: this.state.date,
-      Receptor: this.state.student,
-      ProfesorEmisor: this.state.teacher,
-      TipoEnvio: 'Privado'
-    }).
-      then(function (docRef) {
-        console.log("Se agregó correctamente");
-        //this.state.navigation.navigate('NoticesSchool');
+
+    if(this.validateForm()){
+      db.firestore().collection('Aviso').add({
+        Titulo: this.state.notice,
+        Descripcion: this.state.description,
+        FechaLimite: firebase.firestore.FieldValue.serverTimestamp(),
+        Receptor: this.state.student,
+        ProfesorEmisor: this.state.teacher,
+        TipoEnvio: 'Privado'
       }).
-      catch(function (error) {
-        console.error("ocurrió un error");
-      });
+        then(function (docRef) {
+          console.log("Se agregó correctamente");
+        }).
+        catch(function (error) {
+          console.error("ocurrió un error");
+        });
+        Alert.alert('Usted a creado un aviso');
+        this.props.navigate.navigate('NoticesSchool');
+    }else{
+      Alert.alert('Los campos son obligatorios. Por favor llene los campos');
+    }
 
   }
 
-  /*onUpdatePress = (index) => {
-      document.getElementById('tittle').value = "Actualizado";
-      document.getElementById("description").value = "Description";
-  }*/
-
+  validateForm(){
+    if(this.state.notice!='' && this.state.description!='' && this.state.Receptor != '' ){
+      return true;
+    }else{
+      return false;
+    }
+  }
   handleConfirm = (date) => {
     this.setState({ date: date })
   }
@@ -112,13 +122,18 @@ class NoticeForm extends Component {
           value={this.state.notice}
           style={styles.input}
           onChangeText={notice => this.setState({ notice })}
+          maxLength={40}
         />
 
         <DropDownPicker
           items={this.state.studentByID}
+          placeholder="Seleccione un estudiante"
           style={styles.dropContainer}
           defaultValue={this.state.student}
-
+          containerStyle={{height: 55}}
+          itemStyle={{
+            justifyContent: 'flex-start'
+          }}
           onChangeItem={item => this.setState({
             student: item.value
           })}
@@ -136,33 +151,8 @@ class NoticeForm extends Component {
 
         />
 
-        {/*<DatePicker
-                    style={{width: 200}}
-                    date={this.state.date}
-                    mode="date"
-                    placeholder="select date"
-                    format="YYYY-MM-DD"
-                    minDate="2016-05-01"
-                    maxDate="2016-06-01"
-                    confirmBtnText="Confirm"
-                    cancelBtnText="Cancel"
-                    customStyles={{
-                      dateIcon: {
-                        position: 'absolute',
-                        left: 0,
-                        top: 4,
-                        marginLeft: 0
-                      },
-                      dateInput: {
-                        marginLeft: 36
-                      }
-                      // ... You can check the source to find the other keys.
-                    }}
-                    onDateChange={(date) => {this.setState({date: date})}}
-                />*/}
-
         <TouchableOpacity style={styles.buttonContainer} onPress={this.onBottomPress} >
-          <Text style={styles.buttonText}>Agragar Aviso</Text>
+          <Text style={styles.buttonText}>Agregar Aviso</Text>
         </TouchableOpacity>
 
       </View>
@@ -214,7 +204,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255,255,255,.5)',
     marginBottom: 15,
     borderRadius: 8,
-    height: 40,
     fontSize: 15,
     paddingLeft: 10,
   }
