@@ -82,8 +82,7 @@ const styles = StyleSheet.create({
       },
       carta:{
         backgroundColor:'teal',
-        elevation:8,
-        height:150, 
+        elevation:8, 
         width:300,
         borderRadius:10
     }
