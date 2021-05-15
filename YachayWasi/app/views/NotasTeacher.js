@@ -61,25 +61,25 @@ const NotasTeacher = ({ navigation }) => {
           style={styles.button}
           onPress={() => { onPress("PBimestre") }}
         >
-          <Text>PB</Text>
+          <Text>Practicas</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.button}
           onPress={() => { onPress("SBimestre") }}
         >
-          <Text>SB</Text>
+          <Text>Participacion</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.button}
           onPress={() => { onPress("TBimestre") }}
         >
-          <Text>TB</Text>
+          <Text>Examen</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.button}
           onPress={() => { onPress("CBimestre") }}
         >
-          <Text>CB</Text>
+          <Text>Exposicion</Text>
         </TouchableOpacity>
       </View>
       { items}

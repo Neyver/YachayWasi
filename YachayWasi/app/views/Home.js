@@ -3,8 +3,8 @@ import React, { useState } from 'react';
 import { StyleSheet, ScrollView, Text, View, Dimensions, Image, Slider, Button } from 'react-native';
 import Carousel from '../components/Carousel'
 const images = [
-  'https://c4.wallpaperflare.com/wallpaper/912/238/496/architecture-artistic-buildings-castle-wallpaper-preview.jpg',
-  'https://c0.wallpaperflare.com/preview/638/482/358/castle-lawn-great-britain-england.jpg',
+  'https://ccinformacion.ucm.es/data/cont/docs/16-2018-04-25-Aula%20B07.jpg',
+  'https://web.iespplasalleabancay.edu.pe/wp-content/uploads/2019/10/servicios_61.jpg',
   'https://c4.wallpaperflare.com/wallpaper/1000/780/17/knowledge-mathematics-students-university-wallpaper-preview.jpg',
   'https://c1.wallpaperflare.com/preview/544/345/284/library-books-knowledge-information.jpg',
   'https://c1.wallpaperflare.com/preview/160/500/36/various-college-education-learning.jpg',
