@@ -24,7 +24,7 @@ const views = {
         navigation.navigate('UserDetailScreen');
       };
       return ({
-        title: "Profesor",
+        title: "Auxiliar",
         headerStyle: {
           backgroundColor: '#475B6F',
         },

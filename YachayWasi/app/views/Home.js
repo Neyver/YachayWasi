@@ -18,8 +18,8 @@ const Home = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.textTitle1}>Unidad Educativa</Text>
-      <Text style={styles.textTitle}>Yachay Wasi</Text>
+      <Text style={styles.textTitle1}>LABORATORIOS INFO-SIS</Text>
+      <Text style={styles.textTitle}>INFO-LAB APP</Text>
       <Carousel images={images} style={styles.containerCarousel}></Carousel>
       <View style={styles.containerButton}>
         <Button title="Iniciar Sesion"
@@ -29,7 +29,7 @@ const Home = ({ navigation }) => {
         ></Button>
       </View>
       <Text style={styles.textDescription}>
-        Colegio líder en el país, destacado por la excelecia académica y comprometido con el desarrollo integral de sus estudiantes.
+           Un laboratorio es un lugar que se encuentra equipado con los medios necesarios para llevar a cabo experimentos.
           </Text>
     </View>
   );

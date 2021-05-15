@@ -66,7 +66,7 @@ const views = {
   ActivitiesSchool: {
     screen: ActivitiesSchool,
     navigationOptions: ({ navigation }) => ({
-      title: "Actividades de la Escuela",
+      title: "Actividades de Laboratorio",
       headerStyle: {
         backgroundColor: '#475B6F',
       },
